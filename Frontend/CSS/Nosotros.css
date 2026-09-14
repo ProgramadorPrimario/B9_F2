@@ -1,0 +1,362 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    }
+
+.Quienes_somos {
+  width: 90%;
+  height: 570px;
+  background-image: url('/IMG/ChatGPT\ Image\ 6\ sept\ 2026\,\ 08_05_47\ p.m..png');
+  margin: 2rem auto;
+  overflow: hidden; 
+  color: rgb(0, 0, 0);
+  border-radius: 15px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.Quienes_somos .slides {
+  display: flex;
+  transition: transform 0.8s ease-in-out;
+}
+
+.Quienes_somos .slide {
+  flex: 0 0 95%;
+  padding: 2rem;
+}
+
+.p-1{
+  flex: 0 0 95%;
+  padding: 2rem;
+  font-size: 70px;
+  text-align: center;
+  font-family: 'DM Serif Display', serif;
+}
+
+.imagen-2 {
+  width: 210px;
+  height: 200px;
+  border-radius: 150px;
+  margin-left: 11%;
+  transform: translateY(-30%);
+}
+
+.imagen-1 {
+  width: 210px;
+  height: 200px;
+  border-radius: 150px;
+  margin-left: 10%;
+}
+
+.imagen-3 {
+  width: 210px;
+  height: 200px;
+  border-radius: 150px;
+  margin-left: 13%;
+}
+
+.imagen-5 {
+  width: 415px;
+  height: 445px;
+  border-radius: 5px;
+  transform: translateY(-30%);
+}
+
+.p-3 {
+  margin-left: 50%;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 60px;
+  font-weight: 900;
+}
+
+.p-33 {
+  margin-left: 40%;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(126, 126, 126);
+  font-size: 20px;
+  max-width: 50%;
+  transform: translateY(-500%);
+}
+
+.p-2 {
+  margin-left: 50%;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 60px;
+  font-weight: 900;
+}
+
+.p-22 {
+  margin-left: 40%;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(126, 126, 126);
+  font-size: 20px;
+  max-width: 50%;
+  transform: translateY(0%);
+}
+
+.p-4 {
+  margin-left: 50%;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 60px;
+  font-weight: 900;
+}
+
+.p-44 {
+  margin-left: 40%;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(126, 126, 126);
+  font-size: 20px;
+  max-width: 50%;
+  transform: translateY(0%);
+}
+
+h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  max-width: 40%;
+  margin-top: 15%;
+  font-size: 270%;
+  margin-left: 10%;
+}
+
+.p-5 {
+  margin-left: 50%;
+  font-family: Arial, Helvetica, sans-serif;
+  max-width: 30%;
+  transform: translateY(-117%);
+  color: rgb(111, 111, 111);
+  font-weight: 300;
+  margin-left: 60%;
+  font-size: 130%;
+}
+
+.nav-bar {
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    width: 55%;
+    height: 80px;
+    border-radius: 50px; 
+    border: 1px solid #eeeeee;
+    margin: 15px;
+    margin-left: 20%;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.107);
+    z-index: 1000;
+    justify-content: space-between;
+    position: fixed;
+    backdrop-filter: blur(100px);
+    top: 10px;
+}
+
+
+.nav-link{
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin-left: 0%;
+    font-size: 20px;
+}
+
+
+
+.nav-botones {
+    margin-left: 10%;
+    gap: 6%;
+    display:flex;
+}
+
+.nav-signup {
+    width: 120px;
+    height: 45px;
+    border-radius: 30px;
+    background-color: #6821B4;
+    color: #FFFFFF;
+    text-align: center;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.nav-login {
+        width: 129px;
+        height: 45px;
+        border-radius: 30px;
+        color: #000000;
+        text-align: center;
+        font-size: 20px; 
+        cursor: pointer;
+        margin-left: -20%;
+        border: none;
+        background-color: #ffffff00;
+        backdrop-filter: blur(100px);
+    }
+
+.logo {
+    margin-left: -2.7em;
+    padding-top: -1em;
+}
+
+
+.nav-bar a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+.nav-link a.active  {
+    color: rgb(106, 0, 176);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.nav-login a.active  {
+    color: rgb(106, 0, 176);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+
+
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+.metricas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 3rem;
+  background: #f8f9fa;
+  transform: translateY(-30%);
+}
+
+.card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  text-align: center;
+  padding: 2rem 3rem;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.icono {
+  font-size: 2.5rem;
+  color: #00bfa5;
+  margin-bottom: 1rem;
+}
+
+.card h2 {
+  font-size: 2rem;
+  color: #00bfa5;
+  font-weight: 700;
+  margin: 0;
+}
+
+.card h2 span {
+  font-weight: 400;
+}
+
+.card p {
+  color: #333;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.Diferentes {
+  margin-top: -10%;
+}
+
+.p-6 {
+  font-family: Arial, Helvetica, sans-serif;
+  max-width: 30%;
+  margin-top: 15%;
+  font-size: 270%;
+  margin-left: 10%;
+  text-align: center;
+}
+
+.p-7 {
+  margin-left: 50%;
+  font-family: Arial, Helvetica, sans-serif;
+  max-width: 50%;
+  transform: translateY(-70%);
+  color: rgb(111, 111, 111);
+  font-weight: 300;
+  margin-left: 45%;
+  font-size: 130%;
+}
+
+.imagen-x {
+  width: 30%;
+  height: 30%;
+  border-radius: 10px;
+  margin-left: 40%;
+  transform: translateY(-20%);
+}
+
+
+.footer-mced {
+  background-color: #f7f9fc;
+  color: #555;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 60px;
+  font-family: 'Poppins', sans-serif;
+  border-top: 1px solid #e0e0e0;
+  flex-wrap: wrap;
+  margin-top: 10%;
+}
+
+.footer-left h3 {
+  color: #1a237e;
+  font-weight: 700;
+  margin-right: 20px;
+  border-right: 1px solid #ccc;
+  padding-right: 20px;
+}
+
+.footer-center {
+  flex: 1;
+  text-align: left;
+}
+
+.footer-links a {
+  margin-right: 20px;
+  color: #555;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #6c63ff;
+}
+
+.footer-center p {
+  font-size: 14px;
+  color: #777;
+  margin-top: 10px;
+}
+
+.footer-right {
+  text-align: right;
+}
+
+.footer-icons a {
+  margin-left: 10px;
+  color: #555;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.footer-icons a:hover {
+  color: #6c63ff;
+}
+
+.footer-right p {
+  font-size: 14px;
+  color: #777;
+  margin-top: 8px;
+}

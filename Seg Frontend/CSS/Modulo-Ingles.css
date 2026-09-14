@@ -1,0 +1,113 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f9f9f9;
+  color: #222;
+  margin-top:  10%;
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  width: 30%;
+  height: 80px;
+  border-radius: 50px;
+  border: 1px solid #eeeeee;
+  margin: 15px;
+  margin-left: 34%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.307);
+  z-index: 1000;
+  justify-content: space-between;
+  position: fixed;
+  backdrop-filter: blur(100px);
+  top: -1%;
+}
+
+.boton-usuario {
+  border-radius: 50%;
+  background-color: #04a7edd7;
+  border: none;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.icono-usuario {
+  width: 35px;
+  height: 35px;
+}
+
+.nav-link{
+  display:flex;
+  list-style: none;
+  font-size: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+a:hover {
+  color: rgba(0, 0, 0, 0.585);
+}
+
+.main-2 {
+  margin-top: 12%;
+}
+
+
+.signup {
+  background-color: #6a0dad;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+}
+
+.module-container {
+  width: 85%;
+  margin: 2rem auto;
+}
+
+h1 {
+  text-align: center;
+  color: #6a0dad;
+}
+
+.subtitle {
+  text-align: center;
+  color: #555;
+}
+
+.topic {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.topic h2 {
+  color: #6a0dad;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 0.6rem;
+  text-align: center;
+}
+
+th {
+  background-color: #f3e8ff;
+  color: #6a0dad;
+}
+
+li {
+  list-style: none;
+}

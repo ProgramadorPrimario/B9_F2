@@ -1,0 +1,228 @@
+h1 {
+    margin-left: 12%;
+    font-size: 250%;
+    margin-top: 7%;
+    transform: translateY(-90%);
+}
+
+.p-1 {
+    margin-left: 12%;
+    transform: translateY(-200%);
+}
+
+.imagen-user {
+    width: 6.5%;
+    height: 80px;
+    border-radius:15px;
+    background-color: rgba(0, 119, 255, 0.944);
+    transform: translateY(-130%);
+    margin-left: 4%;
+}
+
+.diploma {
+    margin-left: 15%;
+    transform: translateY(11%);
+}
+
+.Nivel-ICFES{
+    width: 55%;
+    height: 120px;
+    background-color: white;
+    border: solid 1pt black;
+    border-radius: 10px;
+    transform: translateY(-180px);
+    margin-left: 35%;
+}
+
+.p-2 {
+    font-weight: 600;
+    font-size: 150%;
+    margin-left: 2%;
+    margin-top: 2%;
+}
+
+.p-3 {
+    margin-left: 5%;
+    font-size: 45px;
+    font-weight: 600;
+    transform: translateY(-100%);
+}
+
+.btn-practicas {
+    width: 11%;
+    border-radius: 10px;
+    border: solid 1pt rgba(0, 0, 0, 0.443);
+    background-color: white;
+    height: 40px;
+    font-size: 20px;
+    margin-left: 70%;
+    transform: translateY(-300%);
+    color: black;
+    cursor: pointer;
+}
+
+.libro {
+    margin-right: 3%;
+    transform: translateY(12%);
+}
+
+.btn-simulacros {
+    width: 11%;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    background-color: rgba(4, 113, 255, 0.855);
+    height: 40px;
+    font-size: 20px;
+    margin-left: 83%;
+    transform: translateY(-400%);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.Circular {
+    transform: translateY(12%);
+    margin-right: 74%;
+}
+
+.p-4 {
+    transform: translateY(-110%);
+    margin-left: 14%;
+}
+
+.p-5 {
+    margin-left: 5%;
+    font-size: 20px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.669);
+    transform: translateY(-100%);
+}
+
+.progreso {
+    width: 50%;
+    height: 25px;
+    border-radius: 10px;
+    border: solid 1pt rgba(0, 0, 0, 0.454);
+    margin-left: 45%;
+    transform: translateY(-700%);
+}
+
+.p-2 {
+    transform: translateY(-700%);
+    margin-left: 65%;
+}
+
+.Primera-prt {
+    display: grid;
+    grid-template-columns: 4rem;
+    transform: translateY(-10%);
+}
+
+.cuadro-1 {
+    background-color: white;
+    width: 300px;
+    height: 190px;
+    border-radius: 15px;
+    border: solid 1pt rgba(0, 0, 0, 0.338);
+    margin-left: 50%;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.cuadro-2 {
+    background-color: white;
+    width: 300px;
+    height: 190px;
+    border-radius: 15px;
+    border: solid 1pt rgba(0, 0, 0, 0.338);
+    margin-left: 575%;
+    transform: translateY(-100%);
+     box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.cuadro-3 {
+    background-color: white;
+    width: 300px;
+    height: 190px;
+    border-radius: 15px;
+    border: solid 1pt rgba(0, 0, 0, 0.338);
+    margin-left: 1090%;
+    transform: translateY(-200%);
+     box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.cuadro-4 {
+    background-color: white;
+    width: 300px;
+    height: 190px;
+    border-radius: 15px;
+    border: solid 1pt rgba(0, 0, 0, 0.338);
+    margin-left: 1600%;
+    transform: translateY(-300%);
+     box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.cuadro-morado {
+    width: 16%;
+    height: 50px;
+    border-radius: 10px;
+    margin-left: 7%;
+    transform: translateY(40%);
+    background-color: #578ee045;
+}
+
+.p-6 {
+    font-size: 27px;
+    margin-left: 7%;
+    font-weight: 600;
+    transform: translateY(15%);
+}
+
+.p-7 {
+    margin-left: 7%;
+    transform: translateY(90%);
+    color: rgba(0, 0, 0, 0.74);
+}
+
+.p-8 {
+    margin-left: 7%;
+    transform: translateY(140%);
+    color: rgb(63, 199, 0);
+}
+
+.cuadro-verde {
+    width: 16%;
+    height: 50px;
+    border-radius: 10px;
+    margin-left: 7%;
+    transform: translateY(40%);
+    background-color: #32d60041;
+}
+
+.p-9 {
+    margin-left: 7%;
+    transform: translateY(140%);
+    color: rgb(199, 0, 0);
+}
+
+.cuadro-naranja{
+    width: 16%;
+    height: 50px;
+    border-radius: 10px;
+    margin-left: 7%;
+    transform: translateY(40%);
+    background-color: #d66f0041;
+}
+
+.cuadro-amarillo{
+    width: 16%;
+    height: 50px;
+    border-radius: 10px;
+    margin-left: 7%;
+    transform: translateY(40%);
+    background-color: #d6b9004d;
+}
+
+.imagen_1, .imagen_2, .imagen_3, .imagen_4{
+    transform: translateY(-70%);
+    margin-left: 9.5%;
+}
