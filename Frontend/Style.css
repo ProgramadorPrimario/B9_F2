@@ -931,6 +931,56 @@ body {
     margin-left: 0%;
 }
 
+.parte_hub {
+     background-color: white;
+    width: 400px;
+    height: 350px;
+    border-radius: 30px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+    margin-left: 0%;
+}
+
+.barra-morada_1 {
+    width: 380px;
+    height: 8px;
+    margin-left: 2%;
+    border-radius: 30px;
+    background-color: #9602bf;  
+}
+
+.barra-morada_2 {
+    width: 370px;
+    height: 8px;
+    margin-left: 4%;
+    border-radius: 30px;
+    background-color: #9602bf;
+    transform: translateY(2370%);
+}
+
+.perfil {
+    width: 100px;
+    height: 20px;
+    border-radius: 10px;
+    background-color: rgba(158, 2, 255, 0.148);
+    color: #7800b4;
+    text-align: center;
+    margin-left: 68%;
+    transform: translateY(20px);  
+}
+
+.continuar-1 {
+    width: 300px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 22px;
+    border: solid 1pt blueviolet;
+    background-color: #8500de89;
+    margin-left: 12%;
+    transform: translateY(160px); 
+    color: rgb(255, 255, 255); 
+    cursor: pointer;
+}
+
 .continuar {
     width: 300px;
     height: 40px;
@@ -1348,12 +1398,13 @@ body {
     height: 50px;
     border-radius: 10px;
     color: #000;
-    background-color: #e1e1e11e;
+    background-color: #ffffffa4;
     font-size: 24px;
     font-weight: 500;
     transform: translateY(-550px);
     margin-left: 15%;
     cursor: pointer;
+    border: solid 1pt rgba(0, 0, 0, 0.616);
 }
 
 .color {
