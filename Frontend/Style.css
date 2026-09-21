@@ -177,6 +177,7 @@ body {
     color: rgb(106, 0, 176);
     cursor: pointer;
     text-decoration: none;
+    font-weight: 600;
 }
 
 .nav-login a.active  {
@@ -1111,8 +1112,10 @@ body {
 
 .title-4 {
     font-size:80px;
-    transform: translateY(10%);
+    transform: translateY(11%);
     margin-left: 3%;
+    position: relative;
+    z-index: 1;
 }
 
 .span-1 {

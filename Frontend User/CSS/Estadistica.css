@@ -1,13 +1,28 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+.contenedor-principal {
+    position: relative;
+    width: 100%;
+    min-height: 10vh;
+    overflow: hidden; /* ¡Este es el secreto! Corta y oculta cualquier espacio fantasma o desbordamiento generado por los translateY */
+}
+
 h1 {
     margin-left: 12%;
     font-size: 250%;
     margin-top: 7%;
-    transform: translateY(-90%);
+    position: relative; top: -60px;
 }
 
 .p-1 {
     margin-left: 12%;
-    transform: translateY(-200%);
+    position: relative; top: -50px;
 }
 
 .imagen-user {
@@ -15,13 +30,13 @@ h1 {
     height: 80px;
     border-radius:15px;
     background-color: rgba(0, 119, 255, 0.944);
-    transform: translateY(-130%);
+    position: relative; top: -120px;
     margin-left: 4%;
 }
 
 .diploma {
     margin-left: 15%;
-    transform: translateY(11%);
+    position: relative; top: 10px;
 }
 
 .Nivel-ICFES{
@@ -234,6 +249,7 @@ h1 {
     border: solid 1pt rgba(0, 0, 0, 0.282);
     transform: translateY(-130%);
     margin-left: 2.5%;
+    display: block;
 }
 
 .tabla_1 {
@@ -294,7 +310,7 @@ h1 {
     transparent 10px,
     transparent 20px
   );
-  width: 70%;
+  width: 80%;
   margin-left:4%;
   transform: translateY(-500%);
 }
@@ -338,7 +354,7 @@ h1 {
     transparent 10px,
     transparent 20px
   );
-  width: 70%;
+  width: 80%;
   margin-left:4%;
   transform: translateY(1200%);
 }
@@ -353,7 +369,7 @@ h1 {
     transparent 10px,
     transparent 20px
   );
-  width: 70%;
+  width: 80%;
   margin-left:4%;
   transform: translateY(3000%);
 }
@@ -368,7 +384,7 @@ h1 {
     transparent 10px,
     transparent 20px
   );
-  width: 70%;
+  width: 80%;
   margin-left:4%;
   transform: translateY(4800%);
 }
@@ -383,7 +399,7 @@ h1 {
     transparent 10px,
     transparent 20px
   );
-  width: 70%;
+  width: 80%;
   margin-left:4%;
   transform: translateY(6700%);
 }
@@ -391,6 +407,7 @@ h1 {
 .Tercera-prt {
     margin-left: 70%;
     transform: translateY(-518%);
+    display: block;
 }
 
 .tabla_2 {
@@ -526,6 +543,7 @@ h1 {
     background-color: white;
     transform: translateY(520%);
     margin-left: 16%;
+    cursor: pointer;
 }
 
 .imagen_8 {
@@ -537,4 +555,460 @@ h1 {
 
 .cuadro-x {
     transform:translateY(-10%);
+}
+
+
+.tabla_3 {
+    width: 28%;
+    height: 460px;
+    position: relative; top: -995px;
+    border-radius: 10px;
+    margin-left: 2.5%;
+    border: solid 1pt rgba(0, 0, 0, 0.324);
+}
+
+.p-23 {
+    font-size: 22px;
+    margin-left: 5%;
+    transform: translateY(120%);
+}
+
+.p-24 {
+    font-size: 18px;
+    color: #00000098;
+    font-weight: 300;
+    margin-left: 5%;
+    transform: translateY(180%);
+}
+
+
+.Item-5{
+    width: 90%;
+    height: 55px;
+    transform: translateY(100%);
+    border-radius: 10px;
+    border: solid 1pt rgba(0, 0, 0, 0.637);
+    margin-left: 4%;
+}
+
+.Item-6{
+    width: 90%;
+    height: 55px;
+    transform: translateY(150%);
+    border-radius: 10px;
+    border: solid 1pt rgba(0, 0, 0, 0.637);
+    margin-left: 4%;
+}
+
+.Item-7{
+    width: 90%;
+    height: 55px;
+    transform: translateY(200%);
+    border-radius: 10px;
+    border: solid 1pt rgba(0, 0, 0, 0.637);
+    margin-left: 4%;
+}
+
+.Item-8{
+    width: 90%;
+    height: 55px;
+    transform: translateY(250%);
+    border-radius: 10px;
+    border: solid 1pt rgba(0, 0, 0, 0.637);
+    margin-left: 4%;
+}
+
+.cuadro-9{
+    width: 13%;
+    height: 40px;
+    margin-left: 3%;
+    transform: translateY(18%);
+    border: none;
+    border-radius: 5px;
+    background-color: #3c83f469;
+}
+
+.p-25 {
+    margin-left: 20%;
+    transform: translateY(-250%);
+    font-weight: 700;
+
+}
+
+.cuadro-10 {
+    width: 13%;
+    height: 40px;
+    margin-left: 3%;
+    transform: translateY(18%);
+    border: none;
+    border-radius: 5px;
+    background-color: #3c83f469;
+}
+
+.p-26{
+    margin-left: 20%;
+    transform: translateY(-250%);
+    font-weight: 700;
+}
+
+.cuadro-11 {
+    width: 13%;
+    height: 40px;
+    margin-left: 3%;
+    transform: translateY(18%);
+    border: none;
+    border-radius: 5px;
+    background-color: #3c83f469;
+}
+
+.p-27 {
+    margin-left: 20%;
+    transform: translateY(-250%);
+    font-weight: 700;
+}
+
+.cuadro-12 {
+    width: 13%;
+    height: 40px;
+    margin-left: 3%;
+    transform: translateY(18%);
+    border: none;
+    border-radius: 5px;
+    background-color: #3c83f469;
+}
+
+.p-28 {
+    margin-left: 20%;
+    transform: translateY(-250%);
+    font-weight: 700;
+}
+
+.btn-2 {
+    border: solid 1pt rgba(0, 0, 0, 0.782);
+    border-radius: 10px;
+    height: 30px;
+    width: 35%;
+    font-size: 16px;
+    background-color: white;
+    transform: translateY(520%);
+    margin-left: 30%;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.imagen_8 {
+    margin-left: 15%;
+    height: 35px;
+    width: 35px;
+    transform: translateY(10%);
+}
+
+.cuadro-x1 {
+    transform:translateY(-4%);
+}
+
+.num-azuls {
+    color: #3C84F4;
+    font-weight: 600;
+    transform: translateY(-120%);
+    margin-left: 6%;
+}   
+
+.fechas {
+    color: #00000060;
+    margin-left: 20%;
+    transform: translateY(-260%);
+    font-size: 15px;
+}
+
+.cuadro-puntuacion-1{
+    background-color: #4dff0021;
+    width: 16%;
+    height: 18px;
+    border-radius: 3px;
+    margin-left: 80%;
+    text-align: center ;
+    transform: translateY(-450%);
+}
+
+.escala-1 {
+    color: #0ed100;
+    transform:translateY(-650%);
+    font-size: 13px;
+    margin-left: 83%;
+}
+
+.cuadro-puntuacion-2, .cuadro-puntuacion-3 {
+    background-color: #ffd50018;
+    width: 16%;
+    height: 18px;
+    border-radius: 3px;
+    margin-left: 80%;
+    text-align: center ;
+    transform: translateY(-450%);
+}
+
+.escala-2 {
+    color: #ffd500;
+    transform:translateY(-650%);
+    font-size: 13px;
+    margin-left: 83%;
+}
+
+.cuadro-puntuacion-4{
+    background-color: #ff000021;
+    width: 16%;
+    height: 18px;
+    border-radius: 3px;
+    margin-left: 80%;
+    text-align: center ;
+    transform: translateY(-450%);
+}
+
+.escala-3 {
+    color: #ff0000;
+    transform:translateY(-650%);
+    font-size: 13px;
+    margin-left: 84%;
+}
+
+.tabla_4 {
+    width: 30%;
+    height: 460px;
+    border: solid 1pt #0000004d;
+    margin-left: 35%;
+    border-radius: 15px;
+    transform: translateY(-315%);
+}
+
+.numeros {
+    display: grid;
+    gap: 20%;
+    margin-left: 37%;
+    list-style: none;
+    transform: translateY(-1300%);
+}
+
+.meses {
+    display: flex;
+    gap: 7%;
+    list-style: none;
+    position: relative; top: -2025px;
+    margin-left: 42%;
+}
+
+.flechas {
+    transform: translateY(-528%);
+    margin-left: 40%;
+}
+
+.imagen_6 {
+    width: 36%;
+    margin-left:-1.2%;
+    transform: translateY(50%);
+}
+
+.Quinta-prt {
+    position: relative;
+    top: -460px;
+}
+
+.tabla_6 {
+    width: 95%;
+    height: 170px;
+    border-radius: 20px;
+    margin-left: 2.5%;
+    border: solid 1pt #0000004d;
+    transform: translateY(-1125%);
+    background-color: white;
+}
+
+.p-29 {
+    margin-left: 2%;
+    transform: translateY(50%);
+}
+
+.mate {
+    width: 16%;
+    height: 90px;
+    border: solid 1pt #00000075;
+    transform: translateY(-2225%);
+    margin-left: 6%;
+    border-radius: 20px;
+}
+
+.lectura {
+    width: 16%;
+    height: 90px;
+    border: solid 1pt #00000075;
+    transform: translateY(-2325%);
+    margin-left: 24%;
+    border-radius: 20px;
+}
+
+.Ciencias {
+    width: 16%;
+    height: 90px;
+    border: solid 1pt #00000075;
+    transform: translateY(-2425%);
+    margin-left: 42%;
+    border-radius: 20px;
+}
+
+.sociales {
+    width: 16%;
+    height: 90px;
+    border: solid 1pt #00000075;
+    transform: translateY(-2525%);
+    margin-left: 60%;
+    border-radius: 20px;
+}
+
+.ingles {
+    width: 16%;
+    height: 90px;
+    border: solid 1pt #00000075;
+    transform: translateY(-2625%);
+    margin-left: 78%;
+    border-radius: 20px;
+}
+
+.p-30 {
+    margin-left: 35%;
+    font-weight: 400;
+    font-size: 19px;
+    transform: translateY(-350%);
+}
+
+.p-31 {
+    color: #000000a4;
+    margin-left: 35%;
+    transform: translateY(-400%);
+}
+
+.porcentaje-1 {
+    background-color: #ff7b00d5;
+    width: 74%;
+    height: 10px;
+    border-radius: 10px;
+    margin-left: 8%;
+    transform: translateY(-650%);
+}
+
+.porcentaje-2 {
+    background-color: #0084ffd5;
+    width: 74%;
+    height: 10px;
+    border-radius: 10px;
+    margin-left: 8%;
+    transform: translateY(-650%);
+}
+
+.porcentaje-3 {
+    background-color: #00d904d5;
+    width: 74%;
+    height: 10px;
+    border-radius: 10px;
+    margin-left: 8%;
+    transform: translateY(-650%);
+}
+
+.porcentaje-4 {
+    background-color: #ff0000d5;
+    width: 74%;
+    height: 10px;
+    border-radius: 10px;
+    margin-left: 8%;
+    transform: translateY(-650%);
+}
+
+.porcentaje-5 {
+    background-color: #ffe600d5;
+    width: 74%;
+    height: 10px;
+    border-radius: 10px;
+    margin-left: 8%;
+    transform: translateY(-650%);
+}
+
+.p-32 {
+    margin-left: 85%;
+    color: #000000d5;
+    font-weight: 600;
+    transform: translateY(-430%);
+}
+
+.cuadro-naranja-2 {
+    width: 24%;
+    height: 50px;
+    border-radius: 10px;
+    margin-left: 7%;
+    transform: translateY(20%);
+    background-color: #d66f0041;
+    border: solid 1pt #ed6b004d;
+}
+
+.cuadro-azul {
+    width: 24%;
+    height: 50px;
+    border-radius: 10px;
+    margin-left: 7%;
+    transform: translateY(20%);
+    background-color: #008bd641;
+    border: solid 1pt #0067ed4d;
+}
+
+
+.cuadro-verde-2 {
+    width: 24%;
+    height: 50px;
+    border-radius: 10px;
+    margin-left: 7%;
+    transform: translateY(20%);
+    background-color: #00d60041;
+    border: solid 1pt #00ed104d;
+}
+
+
+.cuadro-rojo {
+    width: 24%;
+    height: 50px;
+    border-radius: 10px;
+    margin-left: 7%;
+    transform: translateY(20%);
+    background-color: #d6000041;
+    border: solid 1pt #ed00004d;
+}
+
+.cuadro-amarillo-2 {
+    width: 24%;
+    height: 50px;
+    border-radius: 10px;
+    margin-left: 7%;
+    transform: translateY(20%);
+    background-color: #d6bd0041;
+    border: solid 1pt #edc50056;
+}
+
+.imagen_9 {
+    transform: translateY(-90%);
+    margin-left: 10%;
+}
+
+.tabla_7 {
+    width: 27%;
+    height: 460px;
+    transform: translateY(-533%);
+    margin-left: 70%;
+    border-radius: 10px;
+    border: solid 1pt rgba(0, 0, 0, 0.324);
+}
+
+.p-33 {
+    margin-left: 10%;
+    transform: translateY(50%);
+}
+
+.Cuarta-prt {
+    position: relative;   
 }
