@@ -23,7 +23,6 @@ body {
     margin: 15px;
     margin-left: 32.5%;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.107);
-    transform: translateY(-200%);
     top: 10px;
 }
 
@@ -59,7 +58,6 @@ body {
   border-top: 1px solid #e0e0e0;
   flex-wrap: wrap;
   margin-top: 10%;
-  transform: translateY(-100%);
 }
 
 
