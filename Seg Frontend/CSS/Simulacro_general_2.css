@@ -32,7 +32,7 @@ body {
     position: absolute;
     top: 45px;
     left: 30;
-
+    margin-left: -12%;
     color: var(--text-color);
     display: flex;
     align-items: center;
@@ -40,6 +40,7 @@ body {
     cursor: pointer;
     text-decoration: none;
     transition: all 0.3s ease;
+    z-index: 1000;
 }
 
 
@@ -47,6 +48,9 @@ body {
     width: 58px;
     height: 58px;
     object-fit: contain;
+    position: relative;
+    top: 10rem;
+
 }
 
 .btn-secondary:hover {
