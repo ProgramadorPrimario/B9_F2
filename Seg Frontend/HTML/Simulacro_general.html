@@ -1,85 +1,112 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulacro ICFES Saber 11°</title>
-    <link rel="stylesheet" href="/Seg Frontend/CSS/body.css">
-    <link rel="stylesheet" href="/Seg Frontend/CSS/Simulacro_general.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulacro de Examen - Vertical</title>
+  <link rel="stylesheet" href="/Seg Frontend/CSS/Simulacro_general.css">
+  <!-- Fuentes e íconos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="boby-simulacros">
-    <header class="main-header">
-        <h1>Simulacro ICFES Saber 11°</h1>
-        <p>Prueba interactiva de 50 preguntas</p>
+<body>
+  <div class="container">
+    
+    <!-- Encabezado -->
+    <header class="app-header">
+      <div class="brand">
+        <i class="fa-solid fa-graduation-cap brand-icon"></i>
+        <h1>Simulacro General 1</h1>
+      </div>
+      <div class="timer-box">
+        <i class="fa-regular fa-clock"></i>
+        <span id="timer">00:00</span>
+      </div>
     </header>
 
-    <main class="container">
-       
-        <section class="quiz-controls">
-            
-            <div class="filter-group">
-                <label for="area-filter"><strong>Filtrar por Área:</strong></label>
-                <select id="area-filter">
-                    <option value="ALL">Todas las Áreas (50 Preguntas)</option>
-                    <option value="Matemáticas">1. Matemáticas</option>
-                    <option value="Ciencias Naturales">2. Ciencias Naturales</option>
-                    <option value="Lectura Crítica">3. Lectura Crítica</option>
-                    <option value="Sociales y Ciudadanas">4. Sociales y Ciudadanas</option>
-                    <option value="Inglés">5. Inglés</option>
-                </select>
-            </div>
-            <button id="reset-btn" class="btn secondary">Reiniciar Prueba</button>
-            <a href="/Frontend/HTML/Simulacros.html" id="reset-btn" class="btn-secondary"><img src="/IMG/icons8-izquierda-círculo-96.png" alt=""></a>
-           
-        </section>
-
-        <!-- Contenedor dinámico de preguntas -->
-        <section id="questions-container"></section>
-
-        <!-- Botón para calificar -->
-        <div class="action-area">
-            <button id="submit-btn" class="btn primary">Finalizar y Calificar</button>
-        </div>
-
-        <!-- Resultados -->
-        <section id="results-card" class="results-card hidden">
-            <h2>Resultados del Simulacro</h2>
-            <div class="score-display">
-                <span id="score-text">0 / 50</span>
-                <span id="percentage-text">0%</span>
-            </div>
-            <p id="feedback-message"></p>
-        </section>
-        
-    </main>
-    <footer class="footer-mced">
-        
-  <div class="footer-left">
-    <h3>Jeonn Icfes</h3>
-  </div>
-
-  <div class="footer-center">
-    <nav class="footer-links">
-      <a href="/Frontend/HTML/Nosotros.html">Acerca de Jeonn</a>
-    </nav>
-    <p>© Desde 2025 hasta 2026 <strong>Jeonn</strong>. Persevera y alcanzaras.</p>
-  </div>
-  <div class="footer-social">
-        <a href="https://instagram.com" target="_blank" aria-label="Instagram">
-          <i class="fab fa-instagram"></i>
-        <img src="/IMG/icons8-instagram-96.png" alt="" width="50px" height="50px"></a>
-        <a href="https://facebook.com" target="_blank" aria-label="Facebook">
-          <i class="fab fa-facebook-f"></i>
-          <img src="/IMG/icons8-facebook-96.png" alt="" width="50px" height="50px">
-        </a>
-        <a href="https://x.com" target="_blank" aria-label="x">
-          <i class="fab fa-x"></i>
-          <img src="/IMG/icons8-x-96.png" alt=""width="50px" height="50px">
-        </a>
+    <!-- Barra de progreso global -->
+    <div class="progress-container">
+      <div class="progress-info">
+        <span id="progress-text">Respondidas: 0 de 3</span>
+        <span id="score-live">Aciertos: 0</span>
       </div>
-    <p>Email: Jeonn_Icfes@gmail.com</p>
-</footer>
+      <div class="progress-bar">
+        <div id="progress-fill" class="progress-fill" style="width: 0%;"></div>
+      </div>
+    </div>
 
-    <script src="/Seg Frontend/JS/Simulacro_general.js"></script>
+    <!-- Contenedor donde se listan todas las preguntas hacia abajo -->
+    <main class="questions-scroll-container" id="questions-scroll-container">
+      <!-- Generado dinámicamente por JS -->
+    </main>
+
+    <!-- Sección de botón final -->
+    <div class="finish-section" id="finish-section">
+      <button id="finish-btn" class="btn btn-primary btn-large">
+        <i class="fa-solid fa-flag-checkered"></i> Ver Resultados Finales
+      </button>
+     
+    </div>
+
+    <!-- Pantalla de Resultados (Oculta por defecto) -->
+    <div id="results-screen" class="results-card hidden">
+      <i class="fa-solid fa-trophy trophy-icon"></i>
+      <h2>¡Simulacro Completado!</h2>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-value" id="final-score">0 / 3</span>
+          <span class="stat-label">Puntaje Final</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value" id="final-percentage">0%</span>
+          <span class="stat-label">Efectividad</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value" id="final-time">00:00</span>
+          <span class="stat-label">Tiempo Total</span>
+        </div>
+      </div>
+      <button id="restart-btn" class="btn btn-primary btn-large-1">
+        <i class="fa-solid fa-rotate-right"></i> Reiniciar Simulacro
+      </button>
+      <a href="/Frontend/HTML/Simulacros.html"> <button class="btn btn-primary btn-salir">🠔 Jeonn ICFES</button></a>
+    </div>
+  </div>
+
+  <div class="container-footer">
+      <footer class="footer-mced">
+            
+            <div class="footer-left">
+              <h3>Jeonn Icfes</h3>
+            </div>
+
+            <div class="footer-center">
+              <nav class="footer-links">
+                <a href="/Frontend/HTML/Nosotros.html">Acerca de Jeonn</a>
+              </nav>
+              <p>© Desde 2025 hasta 2026 <strong>Jeonn</strong>. Persevera y alcanzaras.</p>
+            </div>
+            <div class="footer-social">
+                  <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+                    <i class=""></i>
+                  <img src="/IMG/icons8-instagram-96.png" alt="" width="50px" height="50px"></a>
+                  <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+                    <i class=""></i>
+                    <img src="/IMG/icons8-facebook-96.png" alt="" width="50px" height="50px">
+                  </a>
+                  <a href="https://x.com" target="_blank" aria-label="x">
+                    <i class=""></i>
+                    <img src="/IMG/icons8-x-96.png" alt=""width="50px" height="50px">
+                  </a>
+                </div>
+        <p>Email: Jeonn_Icfes@gmail.com</p>
+      </footer>
+  </div>
+
+  
+
+  <script src="/Seg Frontend/JS/Simulacro_general.js"></script>
 </body>
 </html>

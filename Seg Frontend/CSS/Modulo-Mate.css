@@ -7,7 +7,7 @@ body {
 
 
 .module-container {
-  width: 85%;
+  width: 70%;
   margin: 2rem auto;
 }
 
@@ -25,7 +25,7 @@ h1 {
   background: #fff;
   border-radius: 15px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  padding: 1.5rem;
+  padding: 3rem;
   margin: 1.5rem 0;
 }
 
@@ -87,4 +87,19 @@ footer {
   padding: 1rem;
   background: #fff;
   box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+}
+
+.span_1 {
+  color: rgb(205, 1, 1);
+  font-weight: 600;
+}
+
+.span_2 {
+  color: rgba(0, 61, 228, 0.691);
+  font-weight: 600;
+}
+
+.texto_1 {
+  list-style: circle;
+  margin-left: 5%;
 }

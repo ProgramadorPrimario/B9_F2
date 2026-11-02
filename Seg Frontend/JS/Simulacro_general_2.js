@@ -1,991 +1,1181 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // ==========================================
-    // 1. BANCO DE PREGUNTAS (70 PREGUNTAS)
-    // ==========================================
-    const questions = [
-        // --- MATEMÁTICAS (1-14) ---
-        {
-            id: 1,
-            area: "Matemáticas",
-            question: "Una tienda aplica un descuento del 20% sobre el precio original de una chaqueta. Si un cliente paga en efectivo, se le otorga un 10% de descuento adicional sobre el valor ya rebajado. Para un artículo con precio inicial P, el costo final en efectivo se calcula como:",
-            options: [
-                "P × 0,70",
-                "P × 0,72",
-                "P × 0,30",
-                "P − (P × 0,20) − (P × 0,10)"
-            ],
-            correct: 1,
-            explanation: "Descuento del 20% deja el valor en 0,80P. El 10% sobre 0,80P resta 0,08P. Precio final = 0,72P."
-        },
-        {
-            id: 2,
-            area: "Matemáticas",
-            question: "En una caja hay 5 bolas rojas, 3 bolas azules y 2 bolas verdes. Si se extrae una bola al azar, ¿cuál es la probabilidad de que no sea azul?",
-            options: ["3/10", "7/10", "1/2", "4/5"],
-            correct: 1,
-            explanation: "Casos favorables (no azul) = 5 (rojas) + 2 (verdes) = 7. Probabilidad = 7/10."
-        },
-        {
-            id: 3,
-            area: "Matemáticas",
-            question: "Un vehículo recorre una distancia d a una velocidad constante v1 durante un tiempo t. Si para el mismo trayecto duplica su velocidad (2v1), el nuevo tiempo t2 será:",
-            options: [
-                "El doble del tiempo original (2t).",
-                "La mitad del tiempo original (t/2).",
-                "El mismo tiempo original (t).",
-                "El cuádruple del tiempo original (4t)."
-            ],
-            correct: 1,
-            explanation: "La velocidad y el tiempo son inversamente proporcionales (d = v · t). Al duplicar v, el tiempo se reduce a la mitad."
-        },
-        {
-            id: 4,
-            area: "Matemáticas",
-            question: "Las notas de un grupo de estudiantes son: 3,0; 3,5; 4,0; 4,0; 4,5 y 5,0. Si el profesor decide sumar 0,5 puntos a la nota de cada estudiante, ¿qué sucede con la desviación estándar del conjunto de datos?",
-            options: [
-                "Aumenta en 0,5.",
-                "Se duplica.",
-                "Se mantiene exactamente igual.",
-                "Disminuye a la mitad."
-            ],
-            correct: 2,
-            explanation: "Sumar una constante a todos los datos desplaza la media, pero no altera la dispersión relativa de los datos."
-        },
-        {
-            id: 5,
-            area: "Matemáticas",
-            question: "La función que representa el crecimiento de una población de bacterias en función del tiempo t (en horas) es P(t) = 100 · 2^t. ¿Cuántas bacterias habrá al cabo de 4 horas?",
-            options: ["800", "1.600", "3.200", "6.400"],
-            correct: 1,
-            explanation: "P(4) = 100 · 2^4 = 100 · 16 = 1.600."
-        },
-        {
-            id: 6,
-            area: "Matemáticas",
-            question: "Un terreno rectangular tiene un área de 120 m². Si su largo mide 2 m más que su ancho (x), la ecuación cuadrática que permite determinar sus dimensiones es:",
-            options: [
-                "x² + 2x − 120 = 0",
-                "x² − 2x + 120 = 0",
-                "2x² + x − 120 = 0",
-                "x² + 2x + 120 = 0"
-            ],
-            correct: 0,
-            explanation: "Área = largo · ancho → (x + 2) · x = 120 → x² + 2x − 120 = 0."
-        },
-        {
-            id: 7,
-            area: "Matemáticas",
-            question: "Un cilindro tiene un radio r = 3 cm y una altura h = 10 cm. ¿Cuál es su volumen total en términos de π?",
-            options: ["30π cm³", "60π cm³", "90π cm³", "180π cm³"],
-            correct: 2,
-            explanation: "Volumen del cilindro = πr²h = π(3)²(10) = 90π cm³."
-        },
-        {
-            id: 8,
-            area: "Matemáticas",
-            question: "Un menú ejecutivo permite elegir entre 2 entradas, 3 platos fuertes y 2 postres. ¿Cuántas combinaciones distintas de almuerzo (entrada, plato fuerte y postre) se pueden formar?",
-            options: ["7", "10", "12", "16"],
-            correct: 2,
-            explanation: "Principio de multiplicación: 2 × 3 × 2 = 12."
-        },
-        {
-            id: 9,
-            area: "Matemáticas",
-            question: "¿Cuál es la pendiente de la recta que pasa por los puntos A(2,5) y B(6,13) en el plano cartesiano?",
-            options: ["2", "1/2", "4", "8"],
-            correct: 0,
-            explanation: "Pendiente m = (y2 − y1) / (x2 − x1) = (13 − 5) / (6 − 2) = 8/4 = 2."
-        },
-        {
-            id: 10,
-            area: "Matemáticas",
-            question: "Un depósito contiene un líquido que se evapora a razón constante del 5% de su volumen inicial por día. Si inicialmente contenía 800 litros, ¿cuántos litros se habrán evaporado tras 6 días?",
-            options: ["40 litros", "240 litros", "560 litros", "200 litros"],
-            correct: 1,
-            explanation: "Evaporación diaria = 800 × 0,05 = 40 litros. En 6 días = 40 × 6 = 240 litros."
-        },
-        {
-            id: 11,
-            area: "Matemáticas",
-            question: "En una circunferencia, un ángulo central mide 60°. ¿A cuántos radianes equivale esta medida angular?",
-            options: ["π/6", "π/4", "π/3", "π/2"],
-            correct: 2,
-            explanation: "Conversión: 60° × (π / 180°) = π/3 rad."
-        },
-        {
-            id: 12,
-            area: "Matemáticas",
-            question: "Un mapa está elaborado a una escala 1:50.000. Si la distancia entre dos municipios en el mapa es de 4 cm, ¿cuál es la distancia real en kilómetros?",
-            options: ["2 km", "20 km", "200 km", "0,2 km"],
-            correct: 0,
-            explanation: "Distancia = 4 cm × 50.000 = 200.000 cm = 2.000 m = 2 km."
-        },
-        {
-            id: 13,
-            area: "Matemáticas",
-            question: "Si el promedio (media) de cuatro números es 15, y tres de ellos son 10, 12 y 18, ¿cuál es el valor del cuarto número?",
-            options: ["15", "20", "25", "18"],
-            correct: 1,
-            explanation: "Suma total = 15 × 4 = 60. Cuarto número = 60 − (10 + 12 + 18) = 60 − 40 = 20."
-        },
-        {
-            id: 14,
-            area: "Matemáticas",
-            question: "Al simplificar la expresión algebraica (x² − 9) / (x − 3) para x ≠ 3, se obtiene:",
-            options: ["x − 3", "x + 3", "x + 9", "3x"],
-            correct: 1,
-            explanation: "Diferencia de cuadrados: (x − 3)(x + 3) / (x − 3) = x + 3."
-        },
+const questions = [
+  {
+    id: 1,
+    numero: "Pregunta 1 Matemáticas",
+    imagen: "/IMG/imagen-10.png",
+    enunciado: `Un barco navega entre dos faros, ubicados en la parte inferior de la figura.`,
+    opciones: [
+      "A. x = 2 sen(30º) / sen(45º)",
+      "B. x = 2 sen(60º) / sen(45º)",
+      "C. x = sen(60º) / sen(75º)",
+      "D. x = sen(30º) / sen(60º)"
+    ],
+    respuestaCorrecta: 2,
+    
+  },
+  {
+    id: 2,
+    numero: "Pregunta 2 Matemáticas",
+    imagen: "/IMG/imagen-11.png",
+    enunciado: `La tabla presenta la información sobre el gasto en publicidad y las ganancias de una empresa durante los años 2020 a 2022.`,
+    opciones: [
+      "A. G(p) = 30p + 2.000",
+      "B. G(p) = 10p",
+      "C. G(p) = 40p",
+      "D. G(p) = 40p − 800"
+    ],
+    respuestaCorrecta: 0,
+    
+  },
+  {
+    id: 3,
+    numero: "Pregunta 3 Matemáticas",
+    imagen: "/IMG/imagen-12.png",
+    enunciado: `En una tienda se venden mesas a $ 40.000 y sillas a $ 20.000. El dueño de la tienda olvidó registrar la cantidad total de mesas y sillas que se vendieron, pero sabe que los ingresos por ventas del mes fueron de $ 1.400.000 y que se vendieron 3 veces más sillas que mesas. Para determinar la cantidad vendida de cada artículo, siendo M la cantidad de mesas y S la de sillas vendidas, representó la información con las siguientes ecuaciones:`,
+    opciones: [
+      "A. No, porque aunque la ecuación 1 relaciona cada precio con la variable adecuada de forma correcta, la ecuación 2 significa que se venden 3 veces más mesas que sillas.",
+      "B. Sí, porque la ecuación 1 relaciona cada precio con la variable adecuada y la ecuación 2 tiene en cuenta que la cantidad de sillas es 3 veces mayor que la de mesas.",
+      "C. No, porque aunque la ecuación 2 tiene en cuenta que la cantidad de sillas es 3 veces mayor que la de mesas, en la ecuación 1 los precios deberían estar dividiendo y no multiplicando.",
+      "D. Sí, porque al solucionar las dos ecuaciones se obtiene un número entero, lo cual es consistente con las condiciones iniciales del problema."
+    ],
+    respuestaCorrecta: 0,
+    
+  },
+  {
+    id: 4,
+    numero: "Pregunta 4 Matemáticas",
+    imagen: "/IMG/imagen-13.png",
+    enunciado: `La línea punteada en la figura muestra un corte realizado a un triángulo. El corte es paralelo a la base y corta por la mitad a la altura, h, que es perpendicular a la base.`,
+    opciones: [
+      "A. 85 cm.",
+      "B. 60 cm.",
+      "C. 42 cm.",
+      "D. 30 cm."
+    ],
+    respuestaCorrecta: 2,
+    
+  },
+  {
+    id: 5,
+    numero: "Pregunta 5 Matemáticas",
+    imagen: "/IMG/imagen-14.png",
+    enunciado: `Un cartabón es una plantilla que se utiliza en dibujo técnico y que tiene forma de triángulo rectángulo escaleno, de modo que su hipotenusa mide el doble del cateto de menor longitud.`,
+    opciones: [
+      "A. 16 cm.",
+      "B. 32/√3 cm.",
+      "C. 27 cm.",
+      "D. 64/√3 cm."
+    ],
+    respuestaCorrecta: 1,
+    
+  },
+  {
+    id: 6,
+    numero: "Pregunta 6 Matemáticas",
+    imagen: null,
+    enunciado: `El sistema de comunicaciones de un hotel utiliza los dígitos 2, 3, 4 y 5 para asignar un número de extensión telefónica de 4 dígitos diferentes a cada habitación. ¿Cuántas habitaciones del hotel pueden tener extensión telefónica?`,
+    opciones: [
+      "A. 24.",
+      "B. 56.",
+      "C. 120.",
+      "D. 256."
+    ],
+    respuestaCorrecta: 0,
+    
+  },
 
-        // --- CIENCIAS NATURALES (15-28) ---
-        {
-            id: 15,
-            area: "Ciencias Naturales",
-            question: "En un circuito eléctrico simple impulsado por una batería de voltaje constante V, si se duplica la resistencia R del circuito, ¿qué ocurre con la intensidad de corriente I?",
-            options: [
-                "Se duplica.",
-                "Se reduce a la mitad.",
-                "Permanece constante.",
-                "Se cuadruplica."
-            ],
-            correct: 1,
-            explanation: "Ley de Ohm (I = V / R). A mayor resistencia con voltaje constante, menor intensidad de corriente."
-        },
-        {
-            id: 16,
-            area: "Ciencias Naturales",
-            question: "Durante la fotosíntesis, las plantas convierten la energía solar en energía química almacenada en moléculas orgánicas. ¿Cuál es el principal reactivo inorgánico consumido junto con el agua durante este proceso?",
-            options: [
-                "Oxígeno (O2)",
-                "Dióxido de carbono (CO2)",
-                "Nitrógeno molecular (N2)",
-                "Metano (CH4)"
-            ],
-            correct: 1,
-            explanation: "Ecuación fotosintética: 6CO2 + 6H2O + Luz → C6H12O6 + 6O2."
-        },
-        {
-            id: 17,
-            area: "Ciencias Naturales",
-            question: "Al calentar una muestra de gas ideal contenida en un recipiente rígido de volumen constante, la presión interna aumenta debido a que:",
-            options: [
-                "Las moléculas del gas aumentan de tamaño.",
-                "La masa total del gas se incrementa.",
-                "Aumenta la velocidad media y la frecuencia de colisiones de las moléculas contra las paredes.",
-                "Los átomos de gas pierden electrones."
-            ],
-            correct: 2,
-            explanation: "Ley de Gay-Lussac a V constante: la energía cinética media de las moléculas aumenta con T, incrementando la presión."
-        },
-        {
-            id: 18,
-            area: "Ciencias Naturales",
-            question: "En una población de escarabajos que habitan en rocas oscuras, los individuos negros son menos visibles para las aves depredadoras que los amarillos. Con el paso de las generaciones, se espera que:",
-            options: [
-                "Aumente la frecuencia del alelo para el color negro por selección natural.",
-                "Los escarabajos amarillos muten intencionalmente a color negro.",
-                "La población total de escarabajos se extinga por falta de variabilidad.",
-                "Disminuya la proporción de escarabajos negros."
-            ],
-            correct: 0,
-            explanation: "La selección natural favorece el fenotipo adaptativo (color negro) que escapa a la depredación."
-        },
-        {
-            id: 19,
-            area: "Ciencias Naturales",
-            question: "Un estudiante mezcla un compuesto alcalino (NaOH) con un ácido fuerte (HCl) en cantidades estequiométricas. El resultado de esta reacción de neutralización produce:",
-            options: [
-                "Un ácido aún más concentrado.",
-                "Sal (NaCl) y agua (H2O).",
-                "Un gas inflamable y precipitado metálico.",
-                "Peróxido de hidrógeno puro."
-            ],
-            correct: 1,
-            explanation: "Neutralización ácido-base: NaOH + HCl → NaCl + H2O."
-        },
-        {
-            id: 20,
-            area: "Ciencias Naturales",
-            question: "Un satélite orbita la Tierra a una altura constante. Aunque la fuerza de gravedad terrestre atrae continuamente al satélite hacia el centro del planeta, este no cae a la superficie debido a que:",
-            options: [
-                "En el espacio no existe aceleración gravitacional.",
-                "Posee una velocidad tangencial suficiente que mantiene una trayectoria en caída libre continua alrededor de la curvatura terrestre.",
-                "La atmósfera espacial empuja al satélite hacia arriba.",
-                "Su masa es igual a cero en el espacio exterior."
-            ],
-            correct: 1,
-            explanation: "La órbita es un estado de caída libre donde la curvatura de la trayectoria iguala la curvatura de la Tierra."
-        },
-        {
-            id: 21,
-            area: "Ciencias Naturales",
-            question: "¿En qué fase de la división celular meiótica ocurre el entrecruzamiento o crossing-over, garantizando la variabilidad genética en los gametos?",
-            options: ["Anafase II", "Profase I", "Telofase I", "Metafase II"],
-            correct: 1,
-            explanation: "Durante la Profase I meiótica, los cromosomas homólogos se aparean e intercambian segmentos del material genético."
-        },
-        {
-            id: 22,
-            area: "Ciencias Naturales",
-            question: "Si se coloca un cubo de hielo a 0°C en un vaso con agua a 25°C en un ambiente aislado, la transferencia de energía térmica ocurre:",
-            options: [
-                "Desde el hielo hacia el agua hasta congelar todo el fluido.",
-                "Desde el agua hacia el hielo hasta alcanzar el equilibrio térmico.",
-                "En ambas direcciones simultáneamente con la misma intensidad.",
-                "Únicamente hacia el aire exterior sin afectar al agua."
-            ],
-            correct: 1,
-            explanation: "La segunda ley de la termodinámica dicta que el calor fluye de un cuerpo de mayor temperatura a uno de menor temperatura."
-        },
-        {
-            id: 23,
-            area: "Ciencias Naturales",
-            question: "Un elemento químico posee número atómico Z = 11 y número másico A = 23. Esto indica que un átomo neutro de este elemento contiene:",
-            options: [
-                "11 protones, 12 neutrones y 11 electrones.",
-                "11 protones, 23 neutrones y 12 electrones.",
-                "23 protones, 11 neutrones y 23 electrones.",
-                "12 protones, 11 neutrones y 11 electrones."
-            ],
-            correct: 0,
-            explanation: "Protones = Z = 11. Electrones (átomo neutro) = 11. Neutrones = A − Z = 23 − 11 = 12."
-        },
-        {
-            id: 24,
-            area: "Ciencias Naturales",
-            question: "El fenómeno ondulatorio en el cual una onda cambia de dirección y velocidad al pasar de un medio material a otro con diferente densidad se conoce como:",
-            options: ["Difracción", "Reflexión", "Refracción", "Interferencia"],
-            correct: 2,
-            explanation: "Refracción es el cambio de dirección y velocidad de una onda al cambiar de medio de propagación."
-        },
-        {
-            id: 25,
-            area: "Ciencias Naturales",
-            question: "¿Cuál de los siguientes vasos sanguíneos transporta sangre rica en oxígeno desde los pulmones de regreso al corazón humano?",
-            options: [
-                "Arteria pulmonar",
-                "Vena cava superior",
-                "Venas pulmonares",
-                "Arteria aorta descendente"
-            ],
-            correct: 2,
-            explanation: "Las venas pulmonares son las únicas venas que conducen sangre oxigenada desde los pulmones a la aurícula izquierda."
-        },
-        {
-            id: 26,
-            area: "Ciencias Naturales",
-            question: "Un catalizador químico se adiciona a una reacción industrial con el propósito primario de:",
-            options: [
-                "Aumentar la cantidad final del producto obtenido.",
-                "Reducir la energía de activación, incrementando la velocidad de reacción.",
-                "Elevar la temperatura del sistema de forma espontánea.",
-                "Consumirse por completo en la formación de los reactivos."
-            ],
-            correct: 1,
-            explanation: "Los catalizadores disminuyen el umbral de energía de activación sin alterarse irreversiblemente ni modificar el rendimiento de equilibrio."
-        },
-        {
-            id: 27,
-            area: "Ciencias Naturales",
-            question: "Si un haz de luz blanca incide sobre un prisma de cristal y se divide en sus diferentes colores componentes (rojo, naranja, amarillo, verde, azul, violeta), este proceso se denomina:",
-            options: [
-                "Polarización",
-                "Dispersión cromática",
-                "Eco acústico",
-                "Resonancia magnética"
-            ],
-            correct: 1,
-            explanation: "La dispersión cromática ocurre porque el índice de refracción varía levemente según la longitud de onda de cada color."
-        },
-        {
-            id: 28,
-            area: "Ciencias Naturales",
-            question: "La deforestación acelerada de las cuencas hidrográficas altera el ciclo hidrológico local debido a que reduce directamente:",
-            options: [
-                "La evaporación marina.",
-                "La transpiración vegetal y la capacidad de infiltración del suelo.",
-                "La radiación solar incidente.",
-                "La gravedad sobre el agua de escorrentía."
-            ],
-            correct: 1,
-            explanation: "Las plantas absorben e infiltran agua e impulsan la evapotranspiración; sin cobertura forestal se pierde esta regulación hidrológica."
-        },
+  {
+    id: 7,
+    numero: "Pregunta 7 Matemáticas",
+    imagen: "/IMG/imagen-15.png",
+    enunciado: `A continuación, se muestran los resultados de una encuesta que indagó sobre el parque automotor del transporte intermunicipal en Colombia.`,
+    opciones: [
+      "A. La mayor parte del parque automotor son automóviles, camionetas y camperos.",
+      "B. La mitad del parque automotor corresponde a automóviles, camionetas y camperos.",
+      "C. La mayor parte del parque automotor son buses, microbuses y busetas.",
+      "D. La mitad del parque automotor corresponde a buses, microbuses y busetas."
+    ],
+    respuestaCorrecta: 2,
+    
+  },
 
-        // --- LECTURA CRÍTICA (29-42) ---
-        {
-            id: 29,
-            area: "Lectura Crítica",
-            readingText: "«El concepto de privación digital voluntaria ha ganado terreno como una respuesta crítica frente al imperio de las notificaciones continuas. No se trata de un rechazo luddita a la tecnología en sí misma, sino de un intento consciente por reconquistar la soberanía sobre la atención humana. La economía de la atención, diseñada minuciosamente por las grandes plataformas, monetiza cada segundo que mantenemos la mirada fija en la pantalla, transformando nuestro enfoque cognitivo en una mercancía fragmentada. Desconectarse periódicamente no representa un retroceso romántico hacia el pasado, sino una estrategia política de resistencia individual para preservar la profundidad del pensamiento analítico.»",
-            question: "A partir del Texto I, se deduce que la \"economía de la atención\" se basa operativamente en:",
-            options: [
-                "La venta directa de dispositivos tecnológicos de alta gama.",
-                "Capturar la atención sostenida de los usuarios para rentabilizarla.",
-                "La enseñanza de programación informática a jóvenes.",
-                "Eliminar el consumo de redes sociales mediante leyes estatales."
-            ],
-            correct: 1,
-            explanation: "El texto señala expresamente que esta economía monetiza cada segundo que el usuario mantiene la mirada en la pantalla."
-        },
-        {
-            id: 30,
-            area: "Lectura Crítica",
-            readingText: "«El concepto de privación digital voluntaria ha ganado terreno como una respuesta crítica frente al imperio de las notificaciones continuas. No se trata de un rechazo luddita a la tecnología en sí misma, sino de un intento consciente por reconquistar la soberanía sobre la atención humana. La economía de la atención, diseñada minuciosamente por las grandes plataformas, monetiza cada segundo que mantenemos la mirada fija en la pantalla, transformando nuestro enfoque cognitivo en una mercancía fragmentada. Desconectarse periódicamente no representa un retroceso romántico hacia el pasado, sino una estrategia política de resistencia individual para preservar la profundidad del pensamiento analítico.»",
-            question: "La afirmación del autor respecto a que la desconexión \"no es un rechazo luddita\" cumple la función argumentativa de:",
-            options: [
-                "Demonstrar que la tecnología actual carece de fallas técnicas.",
-                "Aclarar que la postura defendida no implica un odio irreflexivo hacia el avance tecnológico.",
-                "Calificar a los usuarios de teléfonos inteligentes como personas sin criterio.",
-                "Exigir el cierre inmediato de las empresas de telecomunicaciones."
-            ],
-            correct: 1,
-            explanation: "Al matizar que no es 'luddita' (movimiento histórico opuesto a la tecnología), aclara que no busca destruir la tecnología sino reevaluar su uso."
-        },
-        {
-            id: 31,
-            area: "Lectura Crítica",
-            readingText: "«El concepto de privación digital voluntaria ha ganado terreno como una respuesta crítica frente al imperio de las notificaciones continuas. No se trata de un rechazo luddita a la tecnología en sí misma, sino de un intento consciente por reconquistar la soberanía sobre la atención humana. La economía de la atención, diseñada minuciosamente por las grandes plataformas, monetiza cada segundo que mantenemos la mirada fija en la pantalla, transformando nuestro enfoque cognitivo en una mercancía fragmentada. Desconectarse periódicamente no representa un retroceso romántico hacia el pasado, sino una estrategia política de resistencia individual para preservar la profundidad del pensamiento analítico.»",
-            question: "¿Cuál de los siguientes enunciados sintetiza de forma más precisa la tesis central del Texto I?",
-            options: [
-                "La tecnología digital destruyó de forma irreversible la capacidad cognitiva del ser humano moderno.",
-                "La desconexión digital voluntaria es un mecanismo para proteger la capacidad de atención frente a la explotación comercial.",
-                "Los teléfonos móviles deben ser prohibidos en espacios de trabajo y educación.",
-                "El pensamiento analítico es incompatible con el desarrollo económico de las naciones."
-            ],
-            correct: 1,
-            explanation: "Resume la idea central: la desconexión es una estrategia de resistencia para preservar la atención frente a la explotación comercial."
-        },
-        {
-            id: 32,
-            area: "Lectura Crítica",
-            question: "Considere la frase: «El juez se mostró inflexible ante las súplicas del acusado; no obstante, concedió un receso para evaluar los peritajes aportados a última hora.» El conector \"no obstante\" introduce en el texto un sentido de:",
-            options: [
-                "Causa antecedente",
-                "Concesión o matiz de oposición",
-                "Conclusión matemática",
-                "Temporalidad simultánea"
-            ],
-            correct: 1,
-            explanation: "'No obstante' es un conector adversativo/concesivo que introduce un matiz de oposición respecto a la inflexibilidad expresada previamente."
-        },
-        {
-            id: 33,
-            area: "Lectura Crítica",
-            question: "En un debate sobre planeación urbana, un participante afirma: «No debemos escuchar las propuestas del arquitecto sobre las nuevas ciclorrutas, porque él no utiliza bicicleta para ir a su trabajo.» ¿Qué falacia lógica comete el participante?",
-            options: [
-                "Falacia Ad Hominem (Ataque a la persona)",
-                "Falacia Ad Populum (Apelación a la multitud)",
-                "Falacia de Falsa Causa",
-                "Falacia de Hombre de Paja"
-            ],
-            correct: 0,
-            explanation: "Ataca la condición personal del arquitecto (no usar bicicleta) en lugar de refutar la validez técnica de su propuesta urbana (Ad Hominem)."
-        },
-        {
-            id: 34,
-            area: "Lectura Crítica",
-            question: "Un texto cuya estructura formal presenta una definición clara, expone clasificaciones sistemáticas y ofrece ejemplos explicativos sin emitir juicios de valor ni buscar convencer al lector de una opinión, se clasifica funcionalmente como:",
-            options: ["Argumentativo", "Expositivo", "Narrativo ficcional", "Poético expresivo"],
-            correct: 1,
-            explanation: "Los textos expositivos se caracterizan por informar ordenadamente datos, clasificaciones y conceptos de forma objetiva."
-        },
-        {
-            id: 35,
-            area: "Lectura Crítica",
-            question: "Lea el siguiente fragmento: «Las luces del puerto titilaban en la lejanía mientras el muelle crujía bajo el peso de la niebla espesa. El viejo marinero ajustó su abrigo de lana desgastada y contempló en silencio el horizonte oscuro.» El recurso predominante empleado por el autor es:",
-            options: [
-                "La descripción detallada con matices sensoriales.",
-                "La argumentación lógica basada en datos duros.",
-                "La exposición de axiomas científicos.",
-                "El diálogo directo entre múltiples personajes."
-            ],
-            correct: 0,
-            explanation: "El pasaje apela a imágenes visuales, auditivas y táctiles para recrear una atmósfera específica."
-        },
-        {
-            id: 36,
-            area: "Lectura Crítica",
-            question: "«Si bien la automatización industrial incrementa la eficiencia operativa de las fábricas, la sustitución masiva de mano de obra sin redes de protección social genera tensiones económicas severas.» De este fragmento se concluye que el autor:",
-            options: [
-                "Apoya incondicionalmente la eliminación de la automatización.",
-                "Considera que la eficiencia industrial justifica cualquier costo social.",
-                "Reconoce la ventaja técnica de la automatización pero advierte sobre sus impactos sociales negativos.",
-                "Afirma que las fábricas automatizadas son menos rentables."
-            ],
-            correct: 2,
-            explanation: "El conector 'Si bien...' le permite ponderar el beneficio de la eficiencia técnica frente al riesgo social no mitigado."
-        },
-        {
-            id: 37,
-            area: "Lectura Crítica",
-            question: "En la frase «Aquel joven demostró una elocuencia pasmosa durante la asamblea», el término \"elocuencia\" se refiere a:",
-            options: [
-                "La agresividad gestual al discutir.",
-                "La facultad de hablar o escribir de modo eficaz para deleitar o persuadir.",
-                "La timidez para expresar pensamientos en público.",
-                "El desconocimiento profundo sobre el tema abordado."
-            ],
-            correct: 1,
-            explanation: "Elocuencia es la capacidad lingüística de comunicarse de forma fluida, elegante y persuasiva."
-        },
-        {
-            id: 38,
-            area: "Lectura Crítica",
-            question: "¿Cuál de los siguientes conectores textuales es el más adecuado para introducir una conclusión basada en argumentos expuestos previamente?",
-            options: ["Sin embargo", "Por lo tanto", "En primer lugar", "Por el contrario"],
-            correct: 1,
-            explanation: "'Por lo tanto' es un conector consecutivo ideal para cerrar deducciones lógicas o conclusiones."
-        },
-        {
-            id: 39,
-            area: "Lectura Crítica",
-            question: "Un autor escribe una columna titulada «La tiranía del pensamiento positivo», en la cual critica la exigencia social moderna de mostrarse feliz constantemente. La postura principal del autor es probablemente:",
-            options: [
-                "Defender que las emociones negativas deben reprimirse por completo.",
-                "Cuestionar la imposición de una actitud optimista obligatoria que invalida el sufrimiento real.",
-                "Promover la tristeza como el único estado emocional válido.",
-                "Recomendar el consumo de fármacos para la alegría."
-            ],
-            correct: 1,
-            explanation: "La crítica a la 'tiranía' del optimismo apunta a denunciar la presión por aparentar positividad negando los procesos emocionales legítimos."
-        },
-        {
-            id: 40,
-            area: "Lectura Crítica",
-            question: "«El Imperio Romano no se derrumbó de la noche a la mañana por una sola invasión; su caída fue el resultado de un largo proceso de erosión institucional, crisis fiscal y presiones migratorias externas.» Según el texto, la caída del Imperio Romano fue:",
-            options: [
-                "Un evento repentino causado exclusivamente por un ejército enemigo.",
-                "Un fenómeno multifactorial desarrollado de forma progresiva a lo largo del tiempo.",
-                "Un mito sin fundamento histórico real.",
-                "Un proceso provocado únicamente por factores económicos internos."
-            ],
-            correct: 1,
-            explanation: "La lectura enfatiza que no fue de la 'noche a la mañana' ni por 'una sola invasión', sino un proceso de erosión acumulativa multifactorial."
-        },
-        {
-            id: 41,
-            area: "Lectura Crítica",
-            question: "¿Cuál es la función principal de las comillas (« ») en la oración: El ministro afirmó que la reforma era «un paso indispensable hacia la equidad»?",
-            options: [
-                "Indicar que la frase es falsa.",
-                "Reproducir una cita textual exacta emitida por el sujeto.",
-                "Señalar un error ortográfico en la declaración.",
-                "Traducir una palabra desde un idioma extranjero."
-            ],
-            correct: 1,
-            explanation: "Cita textual: las comillas encierran las palabras exactas pronunciadas por la persona referida."
-        },
-        {
-            id: 42,
-            area: "Lectura Crítica",
-            question: "Un artículo académico que evalúa los impactos de un nuevo medicamento incluye gráficos estadísticos, tablas de doble entrada y referencias a ensayos clínicos previos. Estos elementos cumplen la función de:",
-            options: [
-                "Distraer al lector de las fallas del medicamento.",
-                "Dar validez objetiva y soporte empírico a las afirmaciones presentadas.",
-                "Cumplir con un requisito puramente estético de edición.",
-                "Hacer que el texto parezca una obra de ficción."
-            ],
-            correct: 1,
-            explanation: "El rigor científico exige fundamentar las aseveraciones con datos probatorios e instrumentales."
-        },
+  {
+    id: 8,
+    numero: "Pregunta 8 Matemáticas",
+    imagen: null,
+    enunciado: `Una prueba atlética tiene un récord mundial de 10,49 segundos y un récord olímpico de 10,50 segundos. ¿Es posible que un atleta registre un tiempo, en el mismo tipo de prueba, que rompa el récord olímpico pero no el mundial?`,
+    opciones: [
+      "A. Sí, porque puede registrar, por ejemplo, un tiempo de 10,497 segundos, que está entre los dos tiempos récord.",
+      "B. Sí, porque puede registrar un tiempo menor que 10,4 y marcaría un nuevo récord",
+      "C. No, porque no existe un registro posible entre los dos tiempos récord.    ",
+      "D. No, porque cualquier registro menor que el récord olímpico va a ser menor que el récord mundial."
+    ],
+    respuestaCorrecta: 0,
+    
+  },
+  {
+    id: 9,
+    numero: "Pregunta 9 Matemáticas",
+    imagen: "/IMG/imagen-16.png",
+    enunciado: `En una institución educativa hay dos cursos en grado undécimo. El número de hombres y mujeres de cada curso se relaciona en la tabla:`,
+    opciones: [
+      "A. El número total de estudiantes de grado undécimo",
+      "B. El número total de hombres de grado undécimo.",
+      "C. El número total de mujeres del curso 11 B.",
+      "D. El número total de hombres del curso 11 A."
+    ],
+    respuestaCorrecta: 0,
+    
+  },
 
-        // --- SOCIALES Y CIUDADANAS (43-56) ---
-        {
-            id: 43,
-            area: "Sociales y Ciudadanas",
-            question: "Durante el siglo XIX en Colombia, las guerras civiles entre los partidos Liberal y Conservador se vieron profundamente motivadas por el debate sobre el modelo de organización territorial del Estado. Este enfrentamiento se dio principalmente entre:",
-            options: [
-                "Monarquía y República",
-                "Centralismo y Federalismo",
-                "Anarquismo y Dictadura militar",
-                "Socialismo y Feudalismo"
-            ],
-            correct: 1,
-            explanation: "Las guerras decimonónicas colombianas enfrentaron el proyecto centralista (conservador) con el modelo federalista (liberal)."
-        },
-        {
-            id: 44,
-            area: "Sociales y Ciudadanas",
-            question: "Un municipio decide construir una carretera que atravesará una reserva forestal protegida y habitada por comunidades campesinas. Para resolver el choque entre el desarrollo de infraestructura y la protección ambiental, la Constitución de 1991 establece que se debe:",
-            options: [
-                "Ejecutar la obra sin consultar a nadie para garantizar el avance económico.",
-                "Cancelar el proyecto y prohibir todo tipo de infraestructura en el departamento.",
-                "Realizar estudios de impacto ambiental y procesos de consulta participativa con las comunidades afectadas.",
-                "Desalojar a los campesinos mediante el uso de la fuerza pública sin indemnización."
-            ],
-            correct: 2,
-            explanation: "La democracia participativa colombiana exige conciliar el desarrollo con la protección ambiental mediante estudios e instancias participativas."
-        },
-        {
-            id: 45,
-            area: "Sociales y Ciudadanas",
-            question: "El poder legislativo en Colombia está encarnado en el Congreso de la República, el cual es un órgano bicameral compuesto por:",
-            options: [
-                "La Corte Constitucional y la Corte Suprema",
-                "El Senado de la República y la Cámara de Representantes",
-                "El Ministerio del Interior y las Alcaldías",
-                "La Fiscalía General y la Procuraduría"
-            ],
-            correct: 1,
-            explanation: "El Congreso de la República de Colombia es bicameral: compuesto por el Senado y la Cámara de Representantes."
-        },
-        {
-            id: 46,
-            area: "Sociales y Ciudadanas",
-            question: "El modelo económico conocido como Sustitución de Importaciones (ISI), aplicado ampliamente en América Latina a mediados del siglo XX, buscaba principalmente:",
-            options: [
-                "Depender exclusivamente de la compra de productos manufacturados a potencias extranjeras.",
-                "Fomentar el desarrollo de la industria nacional para producir internamente los bienes que antes se importaban.",
-                "Eliminar todos los impuestos a las mercancías importadas.",
-                "Promover únicamente el sector agrícola primario sin industrialización."
-            ],
-            correct: 1,
-            explanation: "La estrategia ISI buscaba reducir la dependencia externa mediante la industrialización local protegida por aranceles."
-        },
-        {
-            id: 47,
-            area: "Sociales y Ciudadanas",
-            question: "¿Cuál de los siguientes instrumentos constitucionales permite a un grupo de ciudadanos presentar un proyecto de ley directamente ante el Congreso de la República en Colombia?",
-            options: ["Plebiscito", "Iniciativa Popular Legislativa", "Acción de Tutela", "Consulta Previa"],
-            correct: 1,
-            explanation: "La Iniciativa Popular Legislativa es un mecanismo donde los ciudadanos presentan proyectos de ley con respaldo de firmas."
-        },
-        {
-            id: 48,
-            area: "Sociales y Ciudadanas",
-            question: "La Doctrina de la Seguridad Nacional, promovida en América Latina durante el contexto de la Guerra Fría, influyó fuertemente en:",
-            options: [
-                "El fortalecimiento de democracias participativas y pacíficas.",
-                "La instauración de dictaduras militares orientadas a combatir el avance del comunismo en la región.",
-                "La integración de bloques comerciales entre América del Sur y Asia.",
-                "La abolición total de las Fuerzas Armadas en el continente."
-            ],
-            correct: 1,
-            explanation: "Bajo la doctrina geopolítica anticomunista respaldada por EE.UU., se impulsaron regímenes militares autoritarios en la región."
-        },
-        {
-            id: 49,
-            area: "Sociales y Ciudadanas",
-            question: "El concepto de Etnocentrismo en las ciencias sociales se refiere a la tendencia cultural de:",
-            options: [
-                "Comprender y valorar todas las culturas desde sus propios términos.",
-                "Juzgar y evaluar otras culturas utilizando los patrones de la propia cultura como norma superior.",
-                "Rechazar las tradiciones locales para adoptar costumbres extranjeras.",
-                "Estudiar los fósiles humanos en zonas arqueológicas."
-            ],
-            correct: 1,
-            explanation: "El etnocentrismo juzga otras pautas culturales bajo la premisa de la superioridad del propio grupo."
-        },
-        {
-            id: 50,
-            area: "Sociales y Ciudadanas",
-            question: "En el marco del Derecho Internacional Humanitario (DIH), la regla de Distinción establece que los actores armados en conflicto deben diferenciar permanentemente entre:",
-            options: [
-                "Soldados de alto rango y soldados de bajo rango.",
-                "Combatientes legítimos y la población civil o bienes protegidos.",
-                "Prisioneros de guerra nacionales y extranjeros.",
-                "Armas modernas y armas antiguas."
-            ],
-            correct: 1,
-            explanation: "Principio angular del DIH: prohibido dirigir ataques contra la población civil o bienes protegidos de carácter no militar."
-        },
-        {
-            id: 51,
-            area: "Sociales y Ciudadanas",
-            question: "Un ciudadano considera que la construcción de una fábrica sin filtros ambientales contaminará el río del cual se abastece de agua su municipio. ¿Qué acción constitucional colectiva es la más idónea para proteger el derecho a un ambiente sano?",
-            options: ["Acción de Tutela individual", "Acción Popular", "Habeas Data", "Recurso de Reposición"],
-            correct: 1,
-            explanation: "La Acción Popular protege derechos e intereses colectivos, como la preservación del ambiente sano y el espacio público."
-        },
-        {
-            id: 52,
-            area: "Sociales y Ciudadanas",
-            question: "La Revolución Industrial iniciada en Gran Bretaña a finales del siglo XVIII trajo consigo profundas transformaciones demográficas, entre las cuales destaca:",
-            options: [
-                "La migración masiva de la población desde las zonas rurales hacia los centros urbanos industriales.",
-                "El abandono total de las ciudades para volver a la agricultura de subsistencia.",
-                "La disminución de la población mundial por falta de alimentos.",
-                "La desaparición de la clase obrera o proletariado."
-            ],
-            correct: 0,
-            explanation: "La mecanización agrícola y el surgimiento de fábricas provocaron un masivo éxodo rural hacia las urbes industriales."
-        },
-        {
-            id: 53,
-            area: "Sociales y Ciudadanas",
-            question: "En la Constitución Política de Colombia, la función primordial de la Corte Constitucional es:",
-            options: [
-                "Investigar penalmente al Presidente y a los ministros.",
-                "Velar por la salvaguarda y supremacía de la Constitución Política.",
-                "Administrar el presupuesto general de la Nación.",
-                "Dirigir las operaciones de la Policía Nacional."
-            ],
-            correct: 1,
-            explanation: "La Corte Constitucional tiene a su cargo la guarda de la integridad y supremacía de la Carta Magna (Art. 241 CP)."
-        },
-        {
-            id: 54,
-            area: "Sociales y Ciudadanas",
-            question: "El fenómeno conocido como la Gentrificación en las ciudades modernas consiste en:",
-            options: [
-                "La construcción de viviendas de interés social en el centro histórico.",
-                "La transformación urbana de un barrio deteriorado que atrae inversión y residentes de mayor poder adquisitivo, desplazando a los habitantes originales.",
-                "El abandono total de los servicios públicos en las zonas de clase alta.",
-                "La reforestación masiva de parques urbanos periféricos."
-            ],
-            correct: 1,
-            explanation: "La gentrificación implica la revalorización inmobiliaria de sectores urbanos que desplaza socioeconómicamente a la población autóctona."
-        },
-        {
-            id: 55,
-            area: "Sociales y Ciudadanas",
-            question: "¿Cuál de las siguientes acciones representa una violación directa al derecho al Debido Proceso de un ciudadano acusado de un delito?",
-            options: [
-                "Asignarle un defensor público gratuito si no cuenta con recursos para un abogado.",
-                "Juzgarlo respetando las leyes preexistentes al acto que se le imputa.",
-                "Condenarlo sin permitirle presentar pruebas ni ejercer su defensa legal.",
-                "Permitirle apelar la sentencia ante un superior jerárquico."
-            ],
-            correct: 2,
-            explanation: "El Debido Proceso garantiza el derecho irrenunciable a la defensa técnica, a presentar pruebas y a ser oído en juicio legítimo."
-        },
-        {
-            id: 56,
-            area: "Sociales y Ciudadanas",
-            question: "El histórico conflicto por la tierra en Colombia ha estado fuertemente vinculado a factores como:",
-            options: [
-                "La equitativa distribución del suelo entre pequeños campesinos desde el siglo XIX.",
-                "La alta concentración de la propiedad rural (latifundismo) y el despojo violento de tierras.",
-                "La ausencia de actividad agrícola en el territorio nacional.",
-                "El exceso de tierras tituladas a comunidades indígenas en las grandes capitales."
-            ],
-            correct: 1,
-            explanation: "La extrema inequidad en la propiedad rural y la desposesión violenta han sido desencadenantes clave del conflicto agrario y armado."
-        },
+  {
+    id: 10,
+    numero: "Pregunta 10 Matemáticas",
+    imagen: "/IMG/imagen-17.png",
+    enunciado: `En la tabla se presentan las cartas que conforman una baraja de póquer.`,
+    opciones: [
+      "A. Ser una carta negra y ser un número par.",
+      "B. Ser una carta roja y ser de picas.",
+      "C. Ser una carta de corazones y ser un número impar",
+      "D. Ser una carta roja K y ser de diamantes."
+    ],
+    respuestaCorrecta: 1,
+    
+  },
 
-        // --- INGLÉS (57-70) ---
-        {
-            id: 57,
-            area: "Inglés",
-            question: "Read the conversation and choose the correct word: \"Where _____ you go for your last summer vacation?\" - \"I went to Cartagena.\"",
-            options: ["do", "did", "have", "are"],
-            correct: 1,
-            explanation: "Use 'did' as an auxiliary verb for simple past questions."
-        },
-        {
-            id: 58,
-            area: "Inglés",
-            question: "Complete the sentence: \"If it rains tomorrow, we _____ cancel the outdoor picnic.\"",
-            options: ["will", "would", "had", "did"],
-            correct: 0,
-            explanation: "First Conditional structure: If + present simple, ... will + base verb."
-        },
-        {
-            id: 59,
-            area: "Inglés",
-            question: "Select the option that best completes the phrase: \"She has been studying French _____ three years.\"",
-            options: ["since", "for", "during", "ago"],
-            correct: 1,
-            explanation: "Use 'for' to express a period or duration of time (three years)."
-        },
-        {
-            id: 60,
-            area: "Inglés",
-            question: "Choose the correct pronoun: \"My brother and I built this wooden table all by _____.\"",
-            options: ["myself", "himself", "ourselves", "themselves"],
-            correct: 2,
-            explanation: "The reflexive pronoun corresponding to 'My brother and I' (we) is 'ourselves'."
-        },
-        {
-            id: 61,
-            area: "Inglés",
-            question: "Which sign would you most likely see in a public library?",
-            options: [
-                "PLEASE SILENCE YOUR MOBILE PHONES",
-                "FASTEN YOUR SEATBELTS DURING TAKEOFF",
-                "SWIMMING PROHIBITED WITHOUT LIFEGUARD",
-                "NO PETS ALLOWED ON THE TENNIS COURT"
-            ],
-            correct: 0,
-            explanation: "Silence is mandatory in libraries to preserve an adequate reading environment."
-        },
-        {
-            id: 62,
-            area: "Inglés",
-            question: "Complete the sentence: \"Although the exam was difficult, she managed to pass it with high marks.\" What is the meaning of \"Although\"?",
-            options: ["A pesar de que / Aunque", "Por lo tanto", "Además", "Mientras tanto"],
-            correct: 0,
-            explanation: "'Although' is a concessive conjunction that translates to 'Aunque' or 'A pesar de que'."
-        },
-        {
-            id: 63,
-            area: "Inglés",
-            question: "Select the correct comparative form: \"Mount Everest is _____ than K2.\"",
-            options: ["high", "higher", "highest", "more high"],
-            correct: 1,
-            explanation: "For short adjectives like 'high', add '-er' to create the comparative form ('higher')."
-        },
-        {
-            id: 64,
-            area: "Inglés",
-            question: "Choose the correct sentence in passive voice for: \"The technician repaired the computer yesterday.\"",
-            options: [
-                "The computer was repaired by the technician yesterday.",
-                "The computer is repaired by the technician yesterday.",
-                "The technician was repaired by the computer yesterday.",
-                "The computer had repaired yesterday by the technician."
-            ],
-            correct: 0,
-            explanation: "Passive voice simple past: Object + was/were + past participle verb."
-        },
-        {
-            id: 65,
-            area: "Inglés",
-            question: "Complete the sentence: \"I look forward to _____ you at the conference next week.\"",
-            options: ["see", "seeing", "seen", "saw"],
-            correct: 1,
-            explanation: "The phrasal verb 'look forward to' must be followed by a gerund (-ing form)."
-        },
-        {
-            id: 66,
-            area: "Inglés",
-            question: "Choose the word with the opposite meaning (antonym) of \"ANCIENT\":",
-            options: ["Old", "Modern", "Historic", "Traditional"],
-            correct: 1,
-            explanation: "'Ancient' means extremely old; its direct antonym is 'Modern'."
-        },
-        {
-            id: 67,
-            area: "Inglés",
-            question: "Select the correct option: \"You _____ wear a helmet while riding a motorcycle; it is mandatory by law.\"",
-            options: ["must", "might", "could", "would"],
-            correct: 0,
-            explanation: "Use 'must' to express strict obligation or legal requirements."
-        },
-        {
-            id: 68,
-            area: "Inglés",
-            question: "Complete the conditional statement: \"If I had known about the traffic, I _____ earlier.\"",
-            options: [
-                "would leave",
-                "would have left",
-                "will leave",
-                "had left"
-            ],
-            correct: 1,
-            explanation: "Third Conditional structure: If + past perfect, ... would have + past participle."
-        },
-        {
-            id: 69,
-            area: "Inglés",
-            question: "Choose the correct definition of the idiom: \"To hit the nail on the head.\"",
-            options: [
-                "To hurt yourself while working.",
-                "To describe exactly what is causing a situation or problem.",
-                "To build a house rapidly.",
-                "To make a silly mistake in public."
-            ],
-            correct: 1,
-            explanation: "The idiom 'hit the nail on the head' means to be completely accurate or correct."
-        },
-        {
-            id: 70,
-            area: "Inglés",
-            question: "Complete the sentence: \"Neither Sarah _____ her friends were able to attend the concert.\"",
-            options: ["or", "nor", "and", "but"],
-            correct: 1,
-            explanation: "The correlative conjunction pair is 'Neither ... nor ...'."
-        }
-    ];
+  {
+    id: 11,
+    numero: "Pregunta 11 Matemáticas",
+    imagen: "/IMG/imagen-18.png",
+    enunciado: `Un profesor de Matemáticas les pide a sus estudiantes solucionar la siguiente ecuación: \n \n(x + 2)(x + 3) = 5(x + 3). \n\nMaría, Nelson y Óscar realizan, cada uno, los siguientes procedimientos:`,
+    opciones: [
+      "A. Solo Nelson y Óscar.",
+      "B. Solo María y Nelson.",
+      "C. Solamente Óscar.",
+      "D. Solamente María."
+    ],
+    respuestaCorrecta: 1,
+    
+  },
 
-    // ==========================================
-    // 2. REFERENCIAS AL DOM
-    // ==========================================
-    const areaFilter = document.getElementById('area-filter');
-    const resetBtn = document.getElementById('reset-btn');
-    const questionsContainer = document.getElementById('questions-container');
-    const submitBtn = document.getElementById('submit-btn');
-    const resultsCard = document.getElementById('results-card');
-    const scoreText = document.getElementById('score-text');
-    const percentageText = document.getElementById('percentage-text');
-    const feedbackMessage = document.getElementById('feedback-message');
+  {
+    id: 12,
+    numero: "Pregunta 12 Matemáticas",
+    imagen: null,
+    enunciado: `Un trapecio isósceles es un trapecio cuyos lados no paralelos son congruentes. \n \n En un plano cartesiano se dibuja un trapecio isósceles de modo que el eje y divide al trapecio en dos figuras iguales. \n \n Si las coordenadas de dos de los vértices del trapecio son (−4, 2) y (−2, 8), ¿cuáles son las coordenadas de los otros dos vértices?`,
+    opciones: [
+      "A. (8, 2) y (2, 4).",
+      "B. (2, 8) y (4, 2).",
+      "C. (−2, –4) y (−8, −2).",
+      "D. (−4, −2) y (−2, −8)."
+    ],
+    respuestaCorrecta: 1,
+    
+  },
 
-    // Estado de respuestas del usuario: { idPregunta: indiceOpcionSeleccionada }
-    let userAnswers = {};
-    let isEvaluated = false;
+  {
+    id: 13,
+    numero: "Pregunta 13 Matemáticas",
+    imagen: null,
+    enunciado: `Una regla usada en física indica que, para aumentar el nivel de intensidad del sonido en 10 dB (dB es decibelios, la unidad de medida del nivel de intensidad del sonido), es necesario que la intensidad medida se multiplique por 10. Ramiro es el encargado de aumentar en 20 dB la medida del nivel de intensidad del sistema de sonido de un evento y, según su interpretación de la regla, multiplica por 20 la intensidad actual del sistema. ¿Es correcta su interpretación?`,
+    opciones: [
+      "A. No, porque la regla no considera aumentos de 20 dB, solamente de 10 dB; no hay consideraciones para aumentos mayores.",
+      "B. Sí, porque la regla presentada indica que para aumentar en x unidades el nivel de la medida de intensidad se agrega x a la intensidad.",
+      "C. No, porque aumentar 20 dB equivale a aumentar 10 dB dos veces, es decir, multiplicar por 10 la intensidad dos veces; en total, multiplicar por 100.",
+      "D. Sí, porque el resultado de multiplicar dos veces por 10 la intensidad es multiplicarla por 20; así, se ahorra un paso y obtiene el resultado correcto."
+    ],
+    respuestaCorrecta: 2,
+    
+  },
 
-    // ==========================================
-    // 3. FUNCIONES PRINCIPALES
-    // ==========================================
+  
+  {
+    id: 14,
+    numero: "Pregunta 14 Matemáticas",
+    imagen: null,
+    enunciado: `En una bolsa hay 3 bolas rojas, 3 negras y 12 blancas. Una persona afirma que al sacar una bola al azar, los tres colores tienen la misma probabilidad de salir. ¿Es verdadera esta afirmación?`,
+    opciones: [
+      "A. Sí, pues el número de bolas de cada color no importa.",
+      "B. No, pues no se sabe el número total de bolas en la bolsa.",
+      "C. No, pues hay más bolas de un color que de los otros dos.",
+      "D. Sí, pues las bolas están repartidas de igual manera."
+    ],
+    respuestaCorrecta: 2,
+    
+  },
 
-    /**
-     * Renderiza las preguntas en el contenedor según el área filtrada
-     */
-    function renderQuestions() {
-        const selectedArea = areaFilter.value;
-        questionsContainer.innerHTML = '';
+  {
+    id: 15,
+    numero: "Pregunta 15 Lectura Crítica    ",
+    imagen: null,
+    enunciado: ` RESPONDE LAS PREGUNTAS 15 A 17 DE ACUERDO \n CON LA SIGUIENTE INFORMACIÓN \nJohnny \n
+«Conozco a un tipo». Esta es la frase recurrente que define a Johnny. A secas. Johnny era así, uno le decía: me encantaría multiplicar mis ahorros por mil. Y él: "Conozco a un tipo". Me encantaría viajar a Cuba, comprar unos habanos y volver. ¿Para qué? Para venderlo. "Conozco a un tipo". Me encantaría hacerme un tatuaje. ¿Dónde? En la nuca: "Conozco a un tipo". Me encantaría quedarme acá para siempre. Y ahí Johnny ya no conocía a nadie. Decía: este es un país muy duro. Pero él vivía como un magnate, cambiaba de carro cada seis meses y seguía pagando el mismo leasing; cobraba un subsidio de desempleo que nadie le controlaba y era con eso que pagaba los moteles donde tirábamos, o las langostas que nos comíamos en Key West, o los VIP passes de los bares de salsa a los que le gustaba llevarme en Calle Ocho. Johnny vivía a expensas de su mujer –mitad gringa, mitad ecuatoriana– y compraba hasta los calzoncillos de marca: alimentaba rigurosamente su pequeño sueño americano como si temiera que, si un día se olvidaba de hacerlo, se desplomara a sus pies como un pajarito famélico. 
+\n Tomado y adaptado de: García Robayo, M. (2015). Hasta que pase un huracán (p. 36). Laguna Libros.\n 
+En el último párrafo del texto, se utiliza la expresión "pajarito famélico" para ilustrar el temor de Johnny respecto a su sueño americano. ¿Cuál de los siguientes adjetivos tiene un significado opuesto al de la palabra "famélico" en ese contexto? `,
+    opciones: [
+      "A. Magro.",
+      "B. Enjuto.",
+      "C. Relleno.",
+      "D. Esquelético."
+    ],
+    respuestaCorrecta: 2,
+    
+  },
+  {
+    id: 16,
+    numero: "Pregunta 16 Lectura Crítica",
+    imagen: null,
+    enunciado: `El fragmento lo narra`,
+    opciones: [
+      "A. Un testigo que solo cuenta lo que ve.",
+      "B. Johnny, el protagonista.",
+      "C. Un personaje de la historia que cuenta lo que le contaron.",
+      "D. Alguien que conoce a Johnny."
+    ],
+    respuestaCorrecta: 3,
+    
+  },
 
-        // Filtrar preguntas
-        const filteredQuestions = selectedArea === 'ALL' 
-            ? questions 
-            : questions.filter(q => q.area === selectedArea);
+  {
+    id: 17,
+    numero: "Pregunta 17 Lectura Crítica",
+    imagen: null,
+    enunciado: `De acuerdo con la información que brinda del texto, ¿cuál de las siguientes palabras describe mejor a Johnny?`,
+    opciones: [
+      "A. Vividor.",
+      "B. Generoso.",
+      "C. Trabajador.",
+      "D. Mezquino."
+    ],
+    respuestaCorrecta: 0,
+    
+  },
 
-        if (filteredQuestions.length === 0) {
-            questionsContainer.innerHTML = '<p>No hay preguntas disponibles para esta área.</p>';
-            return;
-        }
+  {
+    id: 18,
+    numero: "Pregunta 18 Lectura Crítica",
+    imagen: null,
+    enunciado: `RESPONDE LAS PREGUNTAS 18 Y 19 DE ACUERDO \n CON LA SIGUIENTE INFORMACIÓN \n 
+    "Instinto en lugar de lógica" \n
+    Cuando llega la hora de poner sus huevos, la avispa Sphex construye una pequeña madriguera para este propósito y sale en la búsqueda de un grillo al cual pica de manera tal que lo paraliza, pero no lo mata. La avispa lleva al grillo a su madriguera, deja sus huevos, cierra la madriguera y luego se va para no volver. Pasado un tiempo, los huevos crecen y la cría de la avispa se alimenta del grillo paralizado que no se descompone debido a que ha permanecido congelado. Para la mente humana, tal rutina tan organizada y aparentemente llena de propósitos lleva consigo un sabor a lógica y de pensamiento. O por lo menos esto es así hasta que conocemos más detalles.\n
+    Por ejemplo, la rutina de la avispa consiste en llevar al grillo hacia la madriguera, dejarlo en la entrada, ir adentro a revisar que todo esté bien, salir y luego dejar el grillo adentro. Si, mientras la avispa está dentro de la madriguera haciendo su inspección preliminar, el grillo es movido algunos centímetros de la entrada, entonces la avispa, al salir de la madriguera, volverá a dejar al grillo de nuevo en la entrada, pero no adentro, y repetirá el procedimiento preparatorio de entrar a la madriguera a revisar que todo esté bien. Si, de nuevo, el grillo es movido unos centímetros de la entrada, la avispa llevará otra vez al grillo hacia la entrada y volverá a entrar a la madriguera para revisarla. La avispa nunca piensa en llevar al grillo directamente a su madriguera. En una ocasión, este procedimiento fue repetido cuarenta veces, siempre con el mismo resultado.\n
+    Tomado y adaptado de: Woolridge, D. E. (1963). The machinery of the brain (pp. 82-83). McGraw-Hill \n 
+    ¿Cuál de las siguientes citas refuerza la idea de que el comportamiento de la avispa Sphex no resulta de un proceso de pensamiento racional?`,
+    opciones: [
+      "A. “La avispa lleva al grillo a su madriguera, deja sus huevos, cierra la madriguera y luego se va para no volver”.",
+      "B. “La avispa nunca piensa en llevar al grillo directamente a su madriguera. En una ocasión, este procedimiento fue repetido cuarenta veces, siempre con el mismo resultado”.",
+      "C. “Para la mente humana, tal rutina tan organizada y aparentemente llena de propósitos lleva consigo un sabor a lógica y de pensamiento”.",
+      "D. “Por ejemplo, la rutina de la avispa consiste en llevar al grillo hacia la madriguera, dejarlo en la entrada, ir adentro a revisar que todo esté bien, salir y luego dejar el grillo adentro”."
+    ],
+    respuestaCorrecta: 1,
+    
+  },
 
-        filteredQuestions.forEach((q, index) => {
-            const card = document.createElement('article');
-            card.className = 'question-card';
-            card.dataset.id = q.id;
+  {
+    id: 19,
+    numero: "Pregunta 19 Lectura Crítica",
+    imagen: null,
+    enunciado: `¿Cuál de los siguientes enunciados sintetiza el tema principal del texto?`,
+    opciones: [
+      "A. El comportamiento aparentemente inteligente de la avispa Sphex",
+      "B. El papel de los grillos en la alimentación de las avispas Sphex",
+      "C. La avispa Sphex como un caso que prueba la inteligencia animal.",
+      "D. Los métodos de crianza y las precauciones de las avispas Sphex."
+    ],
+    respuestaCorrecta: 0,
+    
+  },
 
-            // Encabezado de la pregunta
-            let html = `
-                <div class="question-header">
-                    <span class="question-number"><strong>Pregunta ${q.id}</strong> (Vista: ${index + 1}/${filteredQuestions.length})</span>
-                    <span class="area-badge">${q.area}</span>
-                </div>
-            `;
+  {
+    id: 20,
+    numero: "Pregunta 20 Lectura Crítica",
+    imagen: "/IMG/imagen-19.png",
+    enunciado: `RESPONDE LAS PREGUNTAS 20 A 22 DE ACUERDO CON EL SIGUIENTE CONTEXTO \n
+    De acuerdo con la infografía, ¿en qué momento se requiere efectuar una reanimación cardíaca?
+    `,
+    opciones: [
+      "A. Después de confirmar que la víctima reacciona",
+      "B. Después de comprobar que la víctima no tiene pulso. ",
+      "C. En el momento en que la víctima muestra problemas de respiración.",
+      "D. En el momento en que la víctima está en posición de recuperación."
+    ],
+    respuestaCorrecta: 1,
+    
+  },
+  {
+    id: 21,
+    numero: "Pregunta 21 Lectura Crítica",
+    imagen: null,
+    enunciado: `En caso de que la víctima no respire, ¿qué procedimiento se sugiere en la infografía?`,
+    opciones: [
+      "A. Saltar al paso 5 (tomar el pulso). ",
+      "B. Llamar a un número de emergencias. ",
+      "C. Realizar una respiración boca a boca.",
+      "D. Llevar a cabo una reanimación cardiopulmonar."
+    ],
+    respuestaCorrecta: 2,
+    
+  },
 
-            // Si contiene texto de lectura (Lectura Crítica)
-            if (q.readingText) {
-                html += `<div class="reading-text">${q.readingText}</div>`;
-            }
+  {
+    id: 22,
+    numero: "Pregunta 22 Lectura Crítica",
+    imagen: null,
+    enunciado: `De acuerdo con el propósito de la infografía, ¿cuál de las siguientes es la razón más importante para incluir imágenes?`,
+    opciones: [
+      "A. Complementar la explicación verbal del procedimiento mediante representaciones gráficas.",
+      "B. Ilustrar los diferentes lugares en los que puede llevarse a cabo una reanimación. ",
+      "C. Adicionar información que se omite en el texto escrito sobre distintas técnicas de reanimación",
+      "D. Incluir ejemplos gráficos que sustituyan la descripción verbal del procedimiento"
+    ],
+    respuestaCorrecta: 0,
+    
+  },
 
-            // Enunciado de la pregunta
-            html += `<p class="question-text"><strong>${q.question}</strong></p>`;
+  {
+    id: 23,
+    numero: "Pregunta 23 Lectura Crítica",
+    imagen: null,
+    enunciado: `RESPONDE LAS PREGUNTAS 23 Y 24 DE ACUERDO
+                    CON LA SIGUIENTE INFORMACIÓN\n 
+                    "Tratado contra el método"\n
+    El conocimiento no consiste en una serie de teorías autoconsistentes que tiende a converger en una perspectiva ideal; no consiste en un acercamiento gradual hacia la verdad. Por el contrario, el conocimiento es un océano, siempre en aumento, de alternativas incompatibles entre sí (y tal vez inconmensurables); toda teoría particular, todo cuento de hadas, todo mito, forman parte del conjunto que obliga al resto a una articulación mayor, y todos ellos contribuyen, por medio de este proceso competitivo, al desarrollo de nuestro conocimiento. No hay nada establecido para siempre, ningún punto de vista puede quedar omitido en una explicación comprehensiva [...]. Expertos y profanos, profesionales y diletantes, forjadores de utopías y mentirosos, todos ellos están invitados a participar en el debate y a contribuir al enriquecimiento de la cultura.\n
+    La tarea del científico no ha de ser por más tiempo “la búsqueda de la verdad”, o “la glorificación de Dios”, o “la sistematización de las observaciones” o “el perfeccionamiento de predicciones”. Todas estas cosas no son más que efectos marginales de una actividad a la que se dirige ahora su atención y que consiste en “hacer de la causa más débil la causa más fuerte”, como dijo el sofista, “por ello en apoyar el movimiento de conjunto”.\n
+    Tomado y adaptado de: Feyerabend, P. (1986). Tratado contra el método (pp. 14–15). Tecnos \n
+    ¿Cuál de las siguientes opciones describe mejor la relación entre el contenido del texto y el título?` ,
+    opciones: [
+      "A. El texto introduce la propuesta de un nuevo método para la investigación científica, diferente del tradicional",
+      "B. El texto ataca diferentes ideas a propósito de qué es aquello en lo que consiste el llamado “método científico”.",
+      "C. El texto critica concepciones del conocimiento científico, el cual se ha concebido como resultado de un método.",
+      "D. El texto argumenta a favor de la pluralidad de métodos disponibles para que cada ciencia alcance sus verdades."
+    ],
+    respuestaCorrecta: 2,
+    
+  },
+  {
+    id: 24,
+    numero: "Pregunta 24 Lectura Crítica",
+    imagen: null,
+    enunciado: `El autor del texto aplica a la filosofía de la ciencia el principio del liberalismo, según el cual todos los ciudadanos son iguales ante la ley y ante el Estado. De acuerdo con esto, ¿cuál de las siguientes afirmaciones refleja de manera más directa la influencia de las ideas liberales?`,
+    opciones: [
+      "A. La tarea del científico no ha de ser por más tiempo la glorificación de Dios.",
+      "B. Toda teoría particular, todo cuento de hadas, todo mito, forman parte del conocimiento",
+      "C. Hacer de la causa más débil la causa más fuerte, por ello en apoyar el movimiento de conjunto.",
+      "D. El conocimiento no consiste en una serie de teorías autoconsistentes que tiende a converger en una perspectiva ideal."
+    ],
+    respuestaCorrecta: 1,
+    
+  },
+  {
+    id: 25,
+    numero: "Pregunta 25 Lectura Crítica",
+    imagen: "/IMG/imagen-20.png",
+    enunciado: `RESPONDE LA PREGUNTA 25 DE ACUERDO 
+    CON LA SIGUIENTE INFORMACIÓN\n
+    En la historieta, el niño intenta justificar el alto precio de la limonada recurriendo a:`,
+    opciones: [
+      "A. Argumentos absurdos pero consistentes.",
+      "B. Un modelo económico fiel a la realidad.",
+      "C. Una ley de mercado que no existe.",
+      "D. Su propia versión de la economía."
+    ],
+    respuestaCorrecta: 3,
+    
+  },
+  {
+    id: 26,
+    numero: "Pregunta 26 Lectura Crítica",
+   imagen: "/IMG/imagen-21.png",
+    enunciado: `RESPONDE LA PREGUNTA 26 DE ACUERDO CON LA SIGUIENTE INFORMACIÓN\n
+    ¿Cuál de los siguientes enunciados describe mejor la caricatura?`,
+    opciones: [
+      "A. El pueblo hace justicia por su propia mano.",
+      "B. El linchamiento de un ángel.",
+      "C. Entrevista con el asesino",
+      "D. Un ángel bajó del cielo."
+    ],
+    respuestaCorrecta: 1,
+    
+  },
+  {
+    id: 27,
+    numero: "Pregunta 27 Lectura Crítica",
+    imagen: null,
+    enunciado: `RESPONDE LAS PREGUNTAS 27 Y 28 DE ACUERDO
+    CON LA SIGUIENTE INFORMACIÓN \n
+    "Gran Hermano"\n
+    1984 es una novela futurista que tiene lugar en una sociedad totalitaria. Los ciudadanos de esta sociedad son controlados por una figura omnipresente conocida como el Gran Hermano. En el siguiente apartado, un miembro defensor del orden le explica al protagonista el principal propósito del régimen \n
+     «No habrá lealtad; no existirá más fidelidad que la que se debe al Partido, ni más amor que el amor al Gran Hermano. No habrá risa, excepto la risa triunfal cuando se derrota a un enemigo. No habrá arte, ni literatura, ni ciencia. No habrá ya distinción entre la belleza y la fealdad. Todos los placeres serán destruidos. Pero siempre, no lo olvides, Winston, siempre habrá el afán de poder, la sed de dominio, que aumentará constantemente y se hará cada vez más sutil. Siempre existirá la emoción de la victoria, la sensación de pisotear a un enemigo indefenso. Si quieres hacerte una idea de cómo será el futuro, figúrate una bota aplastando un rostro humano... incesantemente».\n
+     Orwell, G. (2008). 1984. Ediciones Destino.\n
+     Teniendo en cuenta la información que brinda el texto, ¿cuál de las siguientes afirmaciones es compatible con las políticas del Partido?`,
+    opciones: [
+      "A.  El pueblo debe mantenerse unido",
+      "B. La individualidad debe ser eliminada.",
+      "C. El poder está en ser fiel a uno mismo.",
+      "D. Un pueblo ignorante es más poderoso."
+    ],
+    respuestaCorrecta: 1,
+    
+  },
+  {
+    id: 28,
+    numero: "Pregunta 28 Lectura Crítica",
+    imagen: null,
+    enunciado: `En el texto, la frase “figúrate una bota aplastando un rostro humano…incesantemente”`,
+    opciones: [
+      "A. Explica los planes para el futuro del régimen",
+      "B. Ejemplifica las ideas transmitidas al pueblo.",
+      "C. Expone el verdadero propósito del sistema de gobierno.",
+      "D. Ilustra las condiciones de los ciudadanos bajo el régimen."
+    ],
+    respuestaCorrecta: 3,
+    
+  },
+  
+  {
+    id: 29,
+    numero: "Pregunta 29 Sociales y Ciudadanas",
+    enunciado: `La acción de tutela es un mecanismo que busca la protección inmediata de los derechos fundamentales de los ciudadanos.\n
+    ¿En cuál de las siguientes situaciones, se puede presentar una acción de tutela?`,
+    opciones: [
+      "A. Cuando se vulnera el derecho a la salud, porque está en riesgo la vida de la persona",
+      "B. Cuando alguien es expulsado de una agremiación, a pesar de estar al día en sus pagos.",
+      "C. Cuando se busca proteger un derecho colectivo de constituir juntas de acción comunal.",
+      "D. Cuando se legisla sobre el derecho a la vida y el acceso a un trabajo digno para las personas."
+    ],
+    respuestaCorrecta: 0,
+    
+  },
+  {
+    id: 30,
+    numero: "Pregunta 30 Sociales y Ciudadanas",
+    enunciado: `En las principales ciudades del mundo moderno está produciéndose un paulatino abandono de las zonas residenciales del centro urbano, al tiempo que las zonas periféricas tienden a un mayor poblamiento. Estas migraciones las realizan personas o familias que tienen ingresos medios y altos\n
+    `,
+    opciones: [
+      "A. El creciente desarrollo de la industria en el centro de las ciudades.",
+      "B. La búsqueda de mejor calidad de vida en barrios tranquilos.",
+      "C. La escasa oferta de servicios en los barrios del centro de la ciudad.",
+      "D. La creciente oferta de vivienda barata en las afueras de la ciudad."
+    ],
+    respuestaCorrecta: 1,
+    
+  },
+  {
+    id: 31,
+    numero: "Pregunta 31 Sociales y Ciudadanas",
+    enunciado: `La crisis económica que se desató en 1929, en Estados Unidos, también afectó a los países latinoamericanos al reducirse sus exportaciones y, por consiguiente, sus importaciones. Para contrarrestar el efecto de esta crisis, los estados latinoamericanos adoptaron medidas como la sustitución de importaciones.\n
+    ¿En qué consiste esta medida?`,
+    opciones: [
+      "A. En prohibir el ingreso de toda clase de productos extranjeros.",
+      "B. En otorgar total libertad de producción, de cambio y de consumo.",
+      "C. En producir internamente los bienes que tradicionalmente se traían del exterior.",
+      "D. En dejar actuar libremente las leyes de la oferta y la demanda."
+    ],
+    respuestaCorrecta: 3,
+    
+  },
+  {
+    id: 32,
+    numero: "Pregunta 32 Sociales y Ciudadanas",
+    enunciado: `Algunas tendencias del liberalismo promueven cobrar más impuestos a la parte de la población que posee más recursos, y menos impuestos a aquellas personas que posean menos.\n
+    ¿Cuál de las siguientes situaciones está de acuerdo con lo anterior? `,
+    opciones: [
+      "A. En el país A, la tasa promedio de impuestos es el 33 % del salario de los habitantes.",
+      "B. En el país B, el gobierno autoriza aumentar el impuesto del IVA.",
+      "C. En el país C, el gobierno quita los subsidios para los servicios públicos.",
+      "D. En el país D, el gobierno aumenta los impuestos de patrimonio y renta."
+    ],
+    respuestaCorrecta: 3,
+    
+  },
+  {
+    id: 33,
+    numero: "Pregunta 33 Sociales y Ciudadanas",
+    enunciado: `El socialismo busca la igualdad social, política y económica\n
+    ¿Qué propone el socialismo para alcanzar este propósito?`,
+    opciones: [
+      "A. Privatizar los medios de producción y lograr desmontar los sindicatos de las empresas transnacionales y multinacionales.",
+      "B. impulsar el consumo y la capacidad de endeudamiento de los trabajadores como factores fundamentales para dinamizar la economía",
+      "C. Ofrecer bienes y servicios según el esquema de los tratados de libre comercio y la apertura económica de las fronteras nacionales.",
+      "D. Lograr la tenencia colectiva de los medios de producción y la consolidación del poder político en las clases trabajadoras."
+    ],
+    respuestaCorrecta: 3,
+    
+  },
+  {
+    id: 34,
+    numero: "Pregunta 34 Sociales y Ciudadanas",
+    enunciado: `El Consejo Académico de un colegio decidió nombrar como representantes al Consejo Estudiantil a los estudiantes con mejor desempeño académico y de convivencia, en lugar de realizar las elecciones ordinarias.\n
+    ¿Qué situación genera esta decisión?`,
+    opciones: [
+      "A. Que se estimule a los estudiantes a estudiar y ser mejores compañeros.",
+      "B. Que se dificulte la disponibilidad de tiempo para el desarrollo normal de las actividades académicas.",
+      "C. Que se vulnere el derecho de los estudiantes a tener y utilizar mecanismos de participación.",
+      "D. Que se promueva en los estudiantes la comprensión de la importancia del Consejo Estudiantil."
+    ],
+    respuestaCorrecta: 2,
+    
+  },
+  {
+    id: 35,
+    numero: "Pregunta 35 Sociales y Ciudadanas",
+    enunciado: `El gobierno decidió construir una represa que es indispensable para generar electricidad para todo el país. La represa solo puede construirse en un sitio en el que hay un asentamiento indígena. En principio, al hacer las consultas respectivas con esta comunidad, ellos se negaban a la construcción de la represa. Sin embargo, después de un largo proceso de conciliación con la comunidad, se acordó la construcción de la represa y que los indígenas se asentaran en otro territorio.\n
+    Según la Constitución Política de Colombia, ¿cómo procedió el gobierno en esta situación?`,
+    opciones: [
+      "A. Actuó en contra de los derechos de las comunidades indígenas.",
+      "B. Favoreció a la comunidad indígena en contra del interés general.",
+      "C. Mostró respeto por la comunidad indígena en función del bien común.",
+      "D. Debió hacer una consulta popular para resolver este problema."
+    ],
+    respuestaCorrecta: 2,
+    
+  },
+ 
+  {
+    id: 36,
+    numero: "Pregunta 36 Sociales y Ciudadanas",
+    enunciado: `Un profesor universitario sostiene que cuando sus estudiantes mujeres responden a una pregunta, se extienden demasiado en la respuesta. Por esa razón, cuando les pregunta a los estudiantes y algunos levantan la mano para responder, hombres y mujeres por igual, el profesor solo les da la palabra a los hombres.\n
+    De acuerdo con la Constitución, ¿el profesor está vulnerando algún derecho?`,
+    opciones: [
+      "A. No, pues el profesor puede hacer esto porque tiene más experiencia que sus estudiantes.",
+      "B. Sí, ya que con su actuación el profesor está vulnerando el derecho a la igualdad.",
+      "C. No, pues a pesar de que la actitud del profesor puede ser chocante para algunos, no es discriminatoria.",
+      "D. Sí, porque el profesor puede justificar lo que hace si puede probar que las mujeres hablan demasiado."
+    ],
+    respuestaCorrecta: 1,
+    
+  },
+  {
+    id: 37,
+    numero: "Pregunta 37 Sociales y Ciudadanas",
+    enunciado: `Una compañía petrolera identificó un yacimiento de petróleo en una zona en la que vive una comunidad indígena para la cual extraer el petróleo significa “robarle la sangre a la madre tierra”, y por ello se opone a la explotación del yacimiento. La compañía invirtió muchos recursos en un proceso de diálogo con los representantes de la comunidad, pero fue imposible llegar a un acuerdo. Ante esto, y después de un análisis detenido de las posiciones, el Estado le negó a la empresa el permiso de explotación.\n
+    De acuerdo con la Constitución, ¿cuál es la razón que mejor sustenta la decisión del Estado?`,
+    opciones: [
+      "A. Garantizar el derecho a la igualdad.",
+      "B. Garantizar el derecho a la libre asociación.",
+      "C. Proteger la diversidad étnica y cultural.",
+      "D. Proteger el medio ambiente."
+    ],
+    respuestaCorrecta: 2,
+    
+  },
+  {
+    id: 38,
+    numero: "Pregunta 38 Sociales y Ciudadanas",
+    enunciado: `La violencia sexual contra las mujeres es un problema mundial. Hace poco tiempo, el jefe de policía de una ciudad muy importante, en un país desarrollado, declaró al respecto: “Para evitar estas situaciones, lo mejor sería que las mujeres dejaran de salir con minifaldas o escotes provocadores a la calle. Así evitarían ser víctimas de acoso o violencia sexual”.\n
+    ¿Qué intereses está favoreciendo esta declaración?`,
+    opciones: [
+      "A. Los de las mujeres, porque está aconsejándoles cómo vestir para no ser víctimas.",
+      "B. Los de los policías, porque su función no es la de manejar casos de acoso.",
+      "C. Los de los agresores, porque está dándoles una justificación a lo que hacen.",
+      "D. Los de la ciudad, porque el acoso sexual afecta la percepción de seguridad."
+    ],
+    respuestaCorrecta: 2,
+    
+  },
+  {
+    id: 39,
+    numero: "Pregunta 39 Sociales y Ciudadanas",
+    enunciado: `Lea la siguiente lista de problemas:\n
+    1. Escasez de recursos naturales no renovables.\n 2. Pertenencia a partidos políticos contrarios.\n 3. Crecimiento demográfico de la población rural.\n4. Distribución desigual de la propiedad de la tierra.\n
+    ¿Cuáles de esos problemas son causas del conflicto agrario en Colombia?`,
+    opciones: [
+      "A. 1 y 3.",
+      "B. 1 y 4.",
+      "C. 2 y 4.",
+      "D. 1 y 2."
+    ],
+    respuestaCorrecta: 2,
+    
+  },
+  {
+    id: 40,
+    numero: "Pregunta 40 Sociales y Ciudadanas",
+    enunciado: `La Revolución Industrial se debió, entre otras causas, a la invención de la máquina de vapor y la concentración del capital, que permitió adquirir máquinas para producir en masa. Esta revolución produjo cambios en la población, se pasó de la explotación de la tierra a la producción de bienes, del telar familiar a la gran fábrica y de la manufactura a la producción tecnificada.\n
+    De acuerdo con lo anterior, ¿cuál de las siguientes afirmaciones es una consecuencia de la revolución industrial?`,
+    opciones: [
+      "A. El traslado del campo a la ciudad y el surgimiento del proletariado urbano.",
+      "B. El crecimiento de la población rural sobre la urbana.",
+      "C. El nacimiento de una élite propietaria de la tierra.",
+      "D. El desarrollo de un modelo económico para la protección del proletariado."
+    ],
+    respuestaCorrecta: 0,
+    
+  },
+  {
+    id: 41,
+    numero: "Pregunta 41 Sociales y Ciudadanas",
+    enunciado: `Un estudiante se intoxicó con comida que compró a un vendedor ambulante a la salida del colegio. Por esto, el Consejo Directivo del colegio, con la ayuda de la Policía, logró la expulsión de los vendedores ambulantes del sector.\n
+    De los siguientes, ¿cuál sería un efecto de la expulsión de los vendedores?`,
+    opciones: [
+      "A. El aumento de la inseguridad en las inmediaciones del colegio",
+      "B. El aumento de las intoxicaciones alimentarias de los estudiantes en el colegio.",
+      "C. La disminución del apoyo de la comunidad al Consejo Directivo y a la Policía.",
+      "D. La disminución de los ingresos de las familias que dependían de esas ventas."
+    ],
+    respuestaCorrecta: 3,
+    
+  },
+  {
+    id: 42,
+    numero: "Pregunta 42 Sociales y Ciudadanas",
+    enunciado: `Considere el siguiente fragmento:\n
+    “Con los jefes liberales que en la tarde de la sublevación y el caos habían ido a visitarlo en Palacio bajo las balas y entre los incendios, el presidente Ospina improvisó nuevamente un gobierno de Unidad Nacional, mientras Laureano Gómez, el jefe de su partido, que en vano había pedido el traspaso del poder a una Junta Militar, se iba indignado del país (a la España de Franco). En la Bogotá medio quemada restablecieron el orden las tropas del ejército venidas de Boyacá, pero en provincia los que fueron llamados “nueveabrileños” empezaron a levantar la autodefensa liberal vaticinada por Gaitán”.\n
+    ¿Qué periodo de la historia política colombiana se representa en este fragmento?`,
+    opciones: [
+      "A. La Violencia entre 1948 y 1953.",
+      "B. El Frente Nacional entre 1958 y 1974.",
+      "C. La Patria Boba entre 1810 y 1815.",
+      "D. El gobierno de Rojas Pinilla entre 1954 y 1958."
+      
+    ],
+    respuestaCorrecta: 0,
+    
+  },
+  {
+    id: 43,
+    numero: "Pregunta 43 Ciencias Naturales",
+    imagen: "/IMG/imagen-30.png",
+    enunciado: `A partir de las cadenas de ARN mensajero se forman las proteínas. En este proceso, por cada tres nucleótidos consecutivos de ARN mensajero se codifica un aminoácido. A continuación, se muestra una secuencia de ARN mensajero.`,
+    opciones: [
+      "A. 8",
+      "B. 18",
+      "C. 6",
+      "D. 10"
+    ],
+    respuestaCorrecta: 2,
+    
+  },
+  {
+    id: 44,
+    numero: "Pregunta 44 Ciencias Naturales",
+    imagen: "/IMG/imagen-31.png",
+    enunciado: `El salto bungee es un deporte que se practica generalmente en puentes, como se muestra a continuación.`,
+    opciones: [
+      "A. De energía cinética a potencial elástica.",
+      "B. De energía cinética a potencial gravitacional.",
+      "C. De energía potencial gravitacional a potencial elástica.",
+      "D. De energía potencial gravitacional a cinética."
+    ],
+    respuestaCorrecta: 3,
+    
+  },
+  {
+    id: 45,
+    numero: "Pregunta 45 Ciencias Naturales",
+    imagen: "/IMG/imagen-32.png",
+    enunciado: `Considere la siguiente reacción y las masas molares de reactivos y productos:`,
+    opciones: [
+      "A. El Cl2, porque reaccionan en su totalidad 210 gramos de Cl2 y queda la mitad de P4 sin reaccionar.",
+      "B. El P4, porque su masa en gramos es menor que la del Cl2.",
+      "C. El Cl2, porque según la relación estequiométrica siempre se necesitan 6 moles de Cl2, sin importar la cantidad de P4.",
+      "D. El P4, porque su masa molar es casi el doble que la del Cl2."
+    ],
+    respuestaCorrecta: 0,
+    
+  },
+  {
+    id: 46,
+    numero: "Pregunta 46 Ciencias Naturales",
+    imagen: "/IMG/imagen-33.png",
+    enunciado: `En un metal que pierde electrones, la cantidad de protones es mayor que la de electrones y, por tanto, la carga total es positiva y se representa con signos +.\n
+    Se tienen dos esferas metálicas idénticas: una esfera (1) inicialmente con carga + Q y otra esfera (2) inicialmente neutra. Al ponerlas en contacto y luego separarlas, se observa que las dos esferas quedan con cargas iguales + Q/2, como muestra la figura.\n
+    `,
+    opciones: [
+      "A. De la esfera 2 pasaron electrones hacia la esfera 1",
+      "B. De la esfera 2 pasaron protones hacia la esfera 1.",
+      "C. De la esfera 1 pasaron electrones hacia la esfera 2",
+      "D. De la esfera 1 pasaron protones hacia la esfera 2."
+    ],
+    respuestaCorrecta: 0,
+    
+  },
+  {
+    id: 47,
+    numero: "Pregunta 47 Ciencias Naturales",
+    imagen: "/IMG/imagen-34.png",
+    enunciado: `Un grupo de científicos aisló cepas de la bacteria Streptococcus pneumoniae obtenidas en pacientes enfermos de neumonía, las cultivaron con diferentes antibióticos de prueba y midieron el porcentaje de supervivencia de las cepas. La tabla muestra los resultados.`,
+    opciones: [
+      "A. A los enfermos de neumonía no deberían recetarles antibióticos, porque la supervivencia de las bacterias es mínima.",
+      "B. El Streptococcus pneumoniae es más sensible al antibiótico 4 que a los otros tres antibióticos.",
+      "C. Los pacientes enfermos de neumonía pueden sufrir de alergia a los antibióticos y empeorar.",
+      "D. El Streptococcus pneumoniae es una bacteria que habita libremente por el aire y puede contaminar a cualquier ser vivo."
+    ],
+    respuestaCorrecta: 1,
+    
+  },
+  {
+    id: 48,
+    numero: "Pregunta 48 Ciencias Naturales",
+    enunciado: `Una estudiante calentó en una estufa, durante 1 minuto, un litro de agua que inicialmente estaba a 15 °C. La temperatura final del agua fue 17 °C.\n
+    Si ahora calienta 2 litros de agua que inicialmente están a 15 °C, en la misma estufa durante un minuto, ¿cuál será la temperatura final de los 2 litros de agua?`,
+    opciones: [
+      "A. 19 ºC",
+      "B. 17 ºC.",
+      "C. 16 ºC.",
+      "D. 15 ºC."
+    ],
+    respuestaCorrecta: 2,
+    
+  },
+  {
+    id: 49,
+    numero: "Pregunta 49 Ciencias Naturales",
+    imagen: "/IMG/imagen-35.png",
+    enunciado: `En la tabla se muestra la configuración electrónica de un átomo neutro y de un ion de aluminio.`,
+    opciones: [
+      "A.  Porque el último nivel de energía de su configuración electrónica es 3.",
+      "B. Porque tiene 3 electrones menos en su configuración electrónica que el aluminio neutro. ",
+      "C. Porque tiene 3 electrones más en su configuración electrónica que el aluminio neutro.",
+      "D. Porque el número total de electrones en su configuración electrónica es 3."
+    ],
+    respuestaCorrecta: 1,
+    
+  },
+   {
+    id: 50,
+    numero: "Pregunta 50 Ciencias Naturales",
+    imagen: "/IMG/imagen-36.png",
+    enunciado: `En tres instantes diferentes, un estudiante dibuja el diagrama de cuerpo libre para una piedra que cae en un estanque de agua, como se muestra en la siguiente figura`,
+    opciones: [
+      "A. Mayor que la del primer instante, porque el peso hace que la piedra se acelere hacia abajo",
+      "B. Mayor que la del primer instante, porque el peso de la piedra disminuye cuando la fuerza de resistencia comienza a aumentar.",
+      "C. Constante, porque la aceleración de la piedra siempre es igual que la aceleración de la gravedad.",
+      "D. Nula, porque después del tercer instante, el peso de la piedra y la fuerza de resistencia se cancelan"
+    ],
+    respuestaCorrecta: 3,
+    
+  },
+  {
+    id: 51,
+    numero: "Pregunta 51 Ciencias Naturales",
+    imagen: "/IMG/imagen-37.png",
+    enunciado: `Un estudiante sopla una pelota por un tubo vertical y esta sube aceleradamente por el tubo, como se muestra en la siguiente figura:`,
+    opciones: [
+      "A. Porque el peso de la pelota cambia cuando el estudiante sopla aire por el tubo.",
+      "B. Porque la fuerza que ejerce el aire que sopla el estudiante es igual que el peso de la pelota",
+      "C.  Porque el peso de la pelota es mayor que la fuerza del aire que sopla el estudiante.",
+      "D. Porque la fuerza que ejerce el aire que sopla el estudiante es mayor que el peso de la pelota."
+    ],
+    respuestaCorrecta: 3,
+    
+  },
+  {
+    id: 52,
+    numero: "Pregunta 52 Ciencias Naturales",
+    imagen: "/IMG/imagen-38.png",
+    enunciado: `La conductividad de una disolución es la capacidad que tiene esta para conducir la corriente eléctrica. Un estudiante realiza una serie de experimentos para estudiar la conductividad del sulfato de magnesio (MgSO4) disuelto en agua, y obtiene los siguientes resultados:`,
+    opciones: [
+      "A. La influencia de la temperatura sobre la conductividad",
+      "B. El efecto de la conductividad de la disolución sobre la concentración de la sal.",
+      "C. La influencia de la carga de los iones sobre la conductividad",
+      "D. El efecto de la concentración de la sal sobre la conductividad de la disolución."
+    ],
+    respuestaCorrecta: 3,
+    
+  },
+  {
+    id: 53,
+    numero: "Pregunta 53 Ciencias Naturales",
+    imagen: "/IMG/imagen-39.png",
+    enunciado: `Una estudiante desea conocer las proteínas presentes en la sangre. Para ello, emplea una técnica que las separa de acuerdo con su peso molecular y produce una respuesta en diferentes instantes de tiempo cada vez que una proteína es detectada.\n
+    Ella obtiene los resultados mostrados en la siguiente gráfica, en donde cada pico representa una proteína diferente.`,
+    opciones: [
+      "A. Entre 25 y 35 minutos.",
+      "B. Entre 5 y 25 minutos.",
+      "C. Entre 35 y 45 minutos.",
+      "D. Después de 45 minutos."
+    ],
+    respuestaCorrecta: 0,
+    
+  },
+  {
+    id: 54,
+    numero: "Pregunta 54 Ciencias Naturales",
+    enunciado: `En una especie de pato se pueden encontrar individuos con cuello corto e individuos con cuello largo. En esta especie hay una mayor cantidad de patos con cuello largo. En un experimento se aparearon una hembra y un macho de cuello largo; de sus hijos 3/4 son de cuello largo y 1/4 son de cuello corto.\n
+    Teniendo en cuenta lo anterior, ¿cuál afirmación es correcta sobre el genotipo de los padres?`,
+    opciones: [
+      "A. Ambos padres eran heterocigotos.",
+      "B.  El macho era heterocigoto y la hembra era homocigoto recesivo.",
+      "C. El macho era heterocigoto y la hembra era homocigoto dominante.",
+      "D. Ambos padres eran homocigotos dominantes."
+    ],
+    respuestaCorrecta: 0,
+    
+  },
+  {
+    id: 55,
+    numero: "Pregunta 55 Ciencias Naturales",
+    imagen: "/IMG/imagen-40.png",
+    enunciado: `a estudiante realiza diferentes ensayos con el objetivo de determinar el efecto de laconcentración de los reactivos sobre la velocidad de formación de Z en la reacción X + Y → Z. En cada ensayo mide la velocidad de formación de Z manteniendo constante la concentración de uno de los reactivos y variando la del otro, como se muestra en las siguientes gráficas:`,
+    opciones: [
+      "A.  El cambio de la velocidad de formación de Z no depende de la concentración de los reactivos.",
+      "B. El cambio de la velocidad de formación de Z depende de la concentración de ambos reactivos.",
+      "C. El cambio de la velocidad de formación de Z depende solamente de la concentración de X.",
+      "D. El cambio de la velocidad de formación de Z depende solamente de la concentración de Y."
+    ],
+    respuestaCorrecta: 2,
+    
+  },
+  {
+    id: 56,
+    numero: "Pregunta 56 Ciencias Naturales",
+    enunciado: `En las células animales, los lisosomas son los organelos encargados de digerir con enzimas los nutrientes que la célula consume. Si todos los lisosomas de una célula se rompieran, ¿qué le sucedería inicialmente a la célula?`,
+    opciones: [
+      "A. Se degradarían moléculas en su interior",
+      "B. Perdería toda el agua del citoplasma.",
+      "C. No habría respiración celular.",
+      "D. No se formarían proteínas."
+    ],
+    respuestaCorrecta: 0,
+    
+  },
+  {
+    id: 57,
+    numero: "Pregunta 57 Inglés",
+    imagen: "/IMG/imagen-43.png",
+    enunciado: `Responde segun el texto, las preguntas 57 a 63\n
+    James Salter played an important part in the making of movies`,
+    opciones: [
+      "A. from 1960 to 1979.",
+      "B. in 1957.",
+      "C. after 1997",
+    ],
+    respuestaCorrecta: 0,
+    
+  },
+  {
+    id: 58,
+    numero: "Pregunta 58 Inglés",
+    imagen: "/IMG/imagen-43.png",
+    enunciado: ` Passionate Falsehoods is`,
+    opciones: [
+      "A. a newspaper",
+      "B. a play",
+      "C. a movie.",
 
-            // Opciones de respuesta
-            html += `<div class="options-list">`;
-            q.options.forEach((opt, optIndex) => {
-                const isChecked = userAnswers[q.id] === optIndex ? 'checked' : '';
-                const letter = String.fromCharCode(65 + optIndex); // A, B, C, D
-                const disabled = isEvaluated ? 'disabled' : '';
+    ],
+    respuestaCorrecta: 2,
+    
+  },
+  {
+    id: 59,
+    numero: "Pregunta 59 Inglés",
+    imagen: "/IMG/imagen-43.png",
+    enunciado: `Salter had nice and difficult times when he was`,
+    opciones: [
+      "A. an actor.",
+      "B. making movies.",
+      "C. in a different city.",
+    ],
+    respuestaCorrecta: 1,
+    
+  },
+  {
+    id: 60,
+    numero: "Pregunta 60 Inglés",
+    imagen: "/IMG/imagen-43.png",
+    enunciado: `The Last Book was written by`,
+    opciones: [
+      "A. James Salter.",
+      "B. Deborah Treisman",
+      "C.  Nick Paumgarten.",
+    ],
+    respuestaCorrecta: 2,
+    
+  },
+   {
+    id: 61,
+    numero: "Pregunta 61 Inglés",
+    imagen: "/IMG/imagen-43.png",
+    enunciado: `James Salter thinks that his work in the cinema business was`,
+    opciones: [
+      "A.not useful. ",
+      "B. not hard.",
+      "C. not usual.",
+    ],
+    respuestaCorrecta: 0,
+    
+  },
+  {
+    id: 62,
+    numero: "Pregunta 62 Inglés",
+    imagen: "/IMG/imagen-43.png",
+    enunciado: `Reading about James Salter’s years in the cinema could be`,
+    opciones: [
+      "A. clever enough.",
+      "B. just fair.",
+      "C. quite interesting.",
+    ],
+    respuestaCorrecta: 2,
+    
+  },
+  
+  {
+    id: 63,
+    numero: "Pregunta 63 Inglés",
+    imagen: "/IMG/imagen-43.png",
+    enunciado: `The Last Book can be found`,
+    opciones: [
+      "A.in museums. ",
+      "B. at a coffe.",
+      "C. on the web.",
+    ],
+    respuestaCorrecta: 2,
+    
+  },
+  {
+    id: 64,
+    numero: "Pregunta 64 Inglés",
+    imagen: "/IMG/imagen-45.png",
+    enunciado: `Responde segun el cartel`,
+    opciones: [
+      "A. on a plane",
+      "B. on a bus",
+      "C. on a boat",
+    ],
+    respuestaCorrecta: 1,
+    
+  },
+  {
+    id: 65,
+    numero: "Pregunta 65 Inglés",
+    imagen: "/IMG/imagen-46.png",
+    enunciado: `Responde segun el cartel`,
+    opciones: [
+      "A. in a house",
+      "B. in a shop",
+      "C. in a zoo",
+    ],
+    respuestaCorrecta: 1,
+    
+  },
+  {
+    id: 66,
+    numero: "Pregunta 66 Inglés",
+    imagen: "/IMG/imagen-47.png",
+    enunciado: `Responde segun el cartel`,
+    opciones: [
+      "A. on a stool",
+      "B. on a computer",
+      "C. on a bookshelf",
+    ],
+    respuestaCorrecta: 2,
+    
+  },
+  {
+    id: 67,
+    numero: "Pregunta 67 Inglés",
+    enunciado: `Sige la combersacion\n
+    I can’t eat a cold sandwich. It is horrible!`,
+    opciones: [
+      "A. I hope so.",
+      "B. I agree.",
+      "C. I am not",
+        ],
+    respuestaCorrecta: 1,
+    
+  },
+  {
+    id: 68,
+    numero: "Pregunta 68 Inglés",
+    enunciado: `Sige la combersacion\n
+     I am going on vacation to Vancouver`,
+    opciones: [
+      "A. That’s great!",
+      "B. I like swimming!",
+      "C. You are first!",
+    ],
+    respuestaCorrecta: 0,
+    
+  },
+  {
+    id: 69,
+    numero: "Pregunta 69 Inglés",
+    enunciado: `Sige la combersacion\n
+    It rained a lot last night!`,
+    opciones: [
+      "A. Did you accept?",
+      "B. Did you understand?",
+      "C. Did you sleep?",
+    ],
+    respuestaCorrecta: 2,
+    
+  },
+  {
+    id: 70,
+    numero: "Pregunta 70 Inglés",
+    enunciado: `Grandma, shall I hold those bags for you?`,
+    opciones: [
+      "A. I’m not afraid!",
+      "B.Where are you? ",
+      "C. That’s fine.",
+    ],
+    respuestaCorrecta: 2,
+    
+  },
+  
+];
 
-                html += `
-                    <label class="option-item">
-                        <input type="radio" name="question-${q.id}" value="${optIndex}" ${isChecked} ${disabled}>
-                        <span><strong>${letter})</strong> ${opt}</span>
-                    </label>
-                `;
-            });
-            html += `</div>`;
+// Estado
+let userAnswers = new Array(questions.length).fill(null);
+let secondsElapsed = 0;
+let timerInterval = null;
+let isFinished = false;
 
-            // Cuestión de Retroalimentación (si ya se calificó)
-            if (isEvaluated) {
-                const userAnswer = userAnswers[q.id];
-                const isCorrect = userAnswer === q.correct;
-                
-                if (userAnswer !== undefined) {
-                    const statusClass = isCorrect ? 'correct' : 'incorrect';
-                    const statusText = isCorrect ? '¡Correcto!' : 'Incorrecto.';
-                    const correctLetter = String.fromCharCode(65 + q.correct);
+// Elementos DOM
+const questionsScrollContainer = document.getElementById("questions-scroll-container");
+const progressText = document.getElementById("progress-text");
+const scoreLive = document.getElementById("score-live");
+const progressFill = document.getElementById("progress-fill");
+const timerEl = document.getElementById("timer");
+const finishSection = document.getElementById("finish-section");
+const finishBtn = document.getElementById("finish-btn");
+const resultsScreen = document.getElementById("results-screen");
 
-                    html += `
-                        <div class="explanation-box ${statusClass}">
-                            <p><strong>${statusText}</strong> Respuesta correcta: <strong>${correctLetter}</strong></p>
-                            <p>${q.explanation}</p>
-                        </div>
-                    `;
-                } else {
-                    const correctLetter = String.fromCharCode(65 + q.correct);
-                    html += `
-                        <div class="explanation-box incorrect">
-                            <p><strong>Sin responder.</strong> Respuesta correcta: <strong>${correctLetter}</strong></p>
-                            <p>${q.explanation}</p>
-                        </div>
-                    `;
-                }
-            }
+document.addEventListener("DOMContentLoaded", () => {
+  startTimer();
+  renderAllQuestions();
 
-            card.innerHTML = html;
-            questionsContainer.appendChild(card);
-        });
-
-        // Adjuntar eventos a los radio buttons generados
-        attachOptionEvents();
-    }
-
-    /**
-     * Registra las selecciones de los radio buttons en el objeto userAnswers
-     */
-    function attachOptionEvents() {
-        const radioButtons = questionsContainer.querySelectorAll('input[type="radio"]');
-        radioButtons.forEach(radio => {
-            radio.addEventListener('change', (e) => {
-                if (isEvaluated) return;
-                const questionId = parseInt(e.target.name.replace('question-', ''));
-                const selectedValue = parseInt(e.target.value);
-                userAnswers[questionId] = selectedValue;
-            });
-        });
-    }
-
-    /**
-     * Calcula la puntuación total y muestra la tarjeta de resultados
-     */
-    function evaluateQuiz() {
-        let correctCount = 0;
-        const totalQuestions = questions.length;
-
-        questions.forEach(q => {
-            if (userAnswers[q.id] === q.correct) {
-                correctCount++;
-            }
-        });
-
-        const percentage = Math.round((correctCount / totalQuestions) * 100);
-
-        // Actualizar UI de Resultados
-        scoreText.textContent = `${correctCount} / ${totalQuestions}`;
-        percentageText.textContent = `${percentage}%`;
-
-        // Mensaje de retroalimentación personalizado
-        if (percentage >= 85) {
-            feedbackMessage.textContent = "¡Excelente desempeño! Tienes un dominio conceptual muy alto para la prueba ICFES Saber 11°.";
-        } else if (percentage >= 60) {
-            feedbackMessage.textContent = "¡Buen trabajo! Vas por buen camino, aunque es recomendable repasar las áreas con mayor margen de error.";
-        } else {
-            feedbackMessage.textContent = "Sigue practicando. Revisa detenidamente cada explicación para reforzar tus conocimientos clave.";
-        }
-
-        // Marcar como evaluado y re-renderizar
-        isEvaluated = true;
-        submitBtn.disabled = true;
-        submitBtn.style.opacity = "0.5";
-        submitBtn.style.cursor = "not-allowed";
-
-        resultsCard.classList.remove('hidden');
-        renderQuestions();
-
-        // Desplazar la vista hacia los resultados
-        resultsCard.scrollIntoView({ behavior: 'smooth' });
-    }
-
-    /**
-     * Reinicia el simulacro al estado inicial
-     */
-    function resetQuiz() {
-        if (confirm("¿Estás seguro de que deseas reiniciar la prueba? Se borrarán tus respuestas actualizadas.")) {
-            userAnswers = {};
-            isEvaluated = false;
-            submitBtn.disabled = false;
-            submitBtn.style.opacity = "1";
-            submitBtn.style.cursor = "pointer";
-            resultsCard.classList.add('hidden');
-            areaFilter.value = 'ALL';
-            renderQuestions();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    }
-
-    // ==========================================
-    // 4. EVENT LISTENERS
-    // ==========================================
-    areaFilter.addEventListener('change', renderQuestions);
-    submitBtn.addEventListener('click', evaluateQuiz);
-    resetBtn.addEventListener('click', resetQuiz);
-
-    // Renderizado Inicial
-    renderQuestions();
+  finishBtn.addEventListener("click", finishQuiz);
+  document.getElementById("restart-btn").addEventListener("click", restartQuiz);
 });
+
+function startTimer() {
+  timerInterval = setInterval(() => {
+    secondsElapsed++;
+    const mins = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
+    const secs = String(secondsElapsed % 60).padStart(2, '0');
+    timerEl.textContent = `${mins}:${secs}`;
+  }, 1000);
+}
+
+// Renderiza todas las preguntas en el contenedor vertical
+function renderAllQuestions() {
+  questionsScrollContainer.innerHTML = "";
+
+  questions.forEach((q, qIndex) => {
+    const card = document.createElement("div");
+    card.className = "question-card";
+
+    // Encabezado de la pregunta
+    const header = document.createElement("div");
+    header.className = "question-header";
+    header.innerHTML = `<span class="question-number">${q.numero}</span>`;
+    card.appendChild(header);
+
+    // Texto de la pregunta
+    const text = document.createElement("p");
+    text.className = "question-text";
+    text.textContent = q.enunciado;
+    card.appendChild(text);
+
+    // Imagen opcional
+    if (q.imagen) {
+      const imgBox = document.createElement("div");
+      imgBox.className = "image-container";
+      imgBox.innerHTML = `<img src="${q.imagen}" alt="Imagen de pregunta">`;
+      card.appendChild(imgBox);
+    }
+
+    // Contenedor de opciones
+    const optionsDiv = document.createElement("div");
+    optionsDiv.className = "options-grid";
+
+    q.opciones.forEach((opcion, optIndex) => {
+      const btn = document.createElement("button");
+      btn.className = "option-btn";
+
+      const letter = opcion.substring(0, 2);
+      const optText = opcion.substring(3);
+      btn.innerHTML = `<span class="option-letter">${letter}</span><span>${optText}</span>`;
+
+      // Si ya fue respondida o el examen terminó
+      if (userAnswers[qIndex] !== null) {
+        btn.disabled = true;
+        if (optIndex === q.respuestaCorrecta) {
+          btn.classList.add("correct");
+        }
+        if (userAnswers[qIndex] === optIndex && optIndex !== q.respuestaCorrecta) {
+          btn.classList.add("incorrect");
+        }
+      } else if (isFinished) {
+        btn.disabled = true;
+      } else {
+        btn.addEventListener("click", () => handleSelectOption(qIndex, optIndex));
+      }
+
+      optionsDiv.appendChild(btn);
+    });
+    card.appendChild(optionsDiv);
+
+    // Si ya respondió esta pregunta, mostrar su retroalimentación debajo de las opciones
+    if (userAnswers[qIndex] !== null) {
+      const isCorrect = userAnswers[qIndex] === q.respuestaCorrecta;
+      const fb = document.createElement("div");
+      fb.className = `feedback-box ${isCorrect ? 'correct-fb' : 'incorrect-fb'}`;
+      
+      fb.innerHTML = `
+        <div class="feedback-header">
+          <i class="fa-solid ${isCorrect ? 'fa-circle-check' : 'fa-circle-xmark'}"></i>
+          <span>${isCorrect ? '¡Correcto!' : 'Incorrecto'}</span>
+        </div>
+        
+      `;
+      card.appendChild(fb);
+    }
+
+    questionsScrollContainer.appendChild(card);
+  });
+
+  updateProgress();
+}
+
+function handleSelectOption(qIndex, optIndex) {
+  if (isFinished) return;
+  userAnswers[qIndex] = optIndex;
+  renderAllQuestions();
+}
+
+function updateProgress() {
+  const answeredCount = userAnswers.filter(a => a !== null).length;
+  const score = userAnswers.filter((ans, idx) => ans === questions[idx].respuestaCorrecta).length;
+
+  progressText.textContent = `Respondidas: ${answeredCount} de ${questions.length}`;
+  scoreLive.textContent = `Aciertos: ${score}`;
+  progressFill.style.width = `${(answeredCount / questions.length) * 100}%`;
+}
+
+function finishQuiz() {
+  isFinished = true;
+  clearInterval(timerInterval);
+  renderAllQuestions(); // Actualiza para bloquear lo que falte
+
+  // Ocultar lista vertical y mostrar resultados
+  questionsScrollContainer.classList.add("hidden");
+  finishSection.classList.add("hidden");
+  document.querySelector(".progress-container").classList.add("hidden");
+  resultsScreen.classList.remove("hidden");
+
+  const score = userAnswers.filter((ans, idx) => ans === questions[idx].respuestaCorrecta).length;
+  const percentage = Math.round((score / questions.length) * 100);
+
+  document.getElementById("final-score").textContent = `${score} / ${questions.length}`;
+  document.getElementById("final-percentage").textContent = `${percentage}%`;
+  document.getElementById("final-time").textContent = timerEl.textContent;
+}
+
+function restartQuiz() {
+  isFinished = false;
+  userAnswers = new Array(questions.length).fill(null);
+  secondsElapsed = 0;
+
+  resultsScreen.classList.add("hidden");
+  questionsScrollContainer.classList.remove("hidden");
+  finishSection.classList.remove("hidden");
+  document.querySelector(".progress-container").classList.remove("hidden");
+
+  clearInterval(timerInterval);
+  startTimer();
+  renderAllQuestions();
+}
